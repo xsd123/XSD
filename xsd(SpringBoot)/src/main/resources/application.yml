@@ -4,9 +4,9 @@ spring:
 active: dev
 datasource:
   driver-class-name: com.sqlserver.jdbc.Driver
-  url: jdbc:sqlserver://xxxxxx:3306/ChatRobot?useUnicode=true&characterEncoding=utf8&useSSL=false
-  username: xxxxx
-  password: xxxxx
+  url: jdbc:sqlserver://192.168.1.252:1433;/ChatRobot?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: Sa
+  password: xsd@321
   tomcat:
     initialSize: 1
     min-idle: 1
