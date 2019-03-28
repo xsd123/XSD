@@ -1,0 +1,8 @@
+server:
+  port: 443
+  ssl:
+    key-store: classpath:xxx.jks
+    key-store-password: xxx
+    keyStoreType: JKS
+    keyAlias: xxx
+#  此处配置生产环境使用443端口，并配置了https，keyAlias为证书别名。
