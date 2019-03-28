@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Brand">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="brand_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="customer_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="indent_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="m_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, brand_id, brand_code, brand_name, customer_code_prefix, indent_code_prefix, 
+    m_code_prefix, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BrandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey">
+    delete from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand (company_id, brand_id, brand_code, 
+      brand_name, customer_code_prefix, indent_code_prefix, 
+      m_code_prefix, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{brandCode,jdbcType=NCHAR}, 
+      #{brandName,jdbcType=NCHAR}, #{customerCodePrefix,jdbcType=NCHAR}, #{indentCodePrefix,jdbcType=NCHAR}, 
+      #{mCodePrefix,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandCode != null">
+        brand_code,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix,
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix,
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null">
+        #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BrandExample" resultType="java.lang.Integer">
+    select count(*) from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_brand
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCode != null">
+        brand_code = #{record.brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=NCHAR},
+      </if>
+      <if test="record.customerCodePrefix != null">
+        customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.indentCodePrefix != null">
+        indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.mCodePrefix != null">
+        m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_brand
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_code = #{record.brandCode,jdbcType=NCHAR},
+      brand_name = #{record.brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    <set>
+      <if test="brandCode != null">
+        brand_code = #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        brand_name = #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    set brand_code = #{brandCode,jdbcType=NCHAR},
+      brand_name = #{brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Brand">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="brand_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="customer_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="indent_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="m_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, brand_id, brand_code, brand_name, customer_code_prefix, indent_code_prefix, 
+    m_code_prefix, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BrandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey">
+    delete from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand (company_id, brand_id, brand_code, 
+      brand_name, customer_code_prefix, indent_code_prefix, 
+      m_code_prefix, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{brandCode,jdbcType=NCHAR}, 
+      #{brandName,jdbcType=NCHAR}, #{customerCodePrefix,jdbcType=NCHAR}, #{indentCodePrefix,jdbcType=NCHAR}, 
+      #{mCodePrefix,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandCode != null">
+        brand_code,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix,
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix,
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null">
+        #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BrandExample" resultType="java.lang.Integer">
+    select count(*) from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_brand
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCode != null">
+        brand_code = #{record.brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=NCHAR},
+      </if>
+      <if test="record.customerCodePrefix != null">
+        customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.indentCodePrefix != null">
+        indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.mCodePrefix != null">
+        m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_brand
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_code = #{record.brandCode,jdbcType=NCHAR},
+      brand_name = #{record.brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    <set>
+      <if test="brandCode != null">
+        brand_code = #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        brand_name = #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    set brand_code = #{brandCode,jdbcType=NCHAR},
+      brand_name = #{brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Brand">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="brand_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="customer_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="indent_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="m_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, brand_id, brand_code, brand_name, customer_code_prefix, indent_code_prefix, 
+    m_code_prefix, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BrandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey">
+    delete from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand (company_id, brand_id, brand_code, 
+      brand_name, customer_code_prefix, indent_code_prefix, 
+      m_code_prefix, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{brandCode,jdbcType=NCHAR}, 
+      #{brandName,jdbcType=NCHAR}, #{customerCodePrefix,jdbcType=NCHAR}, #{indentCodePrefix,jdbcType=NCHAR}, 
+      #{mCodePrefix,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandCode != null">
+        brand_code,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix,
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix,
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null">
+        #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BrandExample" resultType="java.lang.Integer">
+    select count(*) from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_brand
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCode != null">
+        brand_code = #{record.brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=NCHAR},
+      </if>
+      <if test="record.customerCodePrefix != null">
+        customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.indentCodePrefix != null">
+        indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.mCodePrefix != null">
+        m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_brand
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_code = #{record.brandCode,jdbcType=NCHAR},
+      brand_name = #{record.brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    <set>
+      <if test="brandCode != null">
+        brand_code = #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        brand_name = #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    set brand_code = #{brandCode,jdbcType=NCHAR},
+      brand_name = #{brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Brand">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="brand_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="customer_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="indent_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="m_code_prefix" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, brand_id, brand_code, brand_name, customer_code_prefix, indent_code_prefix, 
+    m_code_prefix, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BrandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BrandKey">
+    delete from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand (company_id, brand_id, brand_code, 
+      brand_name, customer_code_prefix, indent_code_prefix, 
+      m_code_prefix, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{brandCode,jdbcType=NCHAR}, 
+      #{brandName,jdbcType=NCHAR}, #{customerCodePrefix,jdbcType=NCHAR}, #{indentCodePrefix,jdbcType=NCHAR}, 
+      #{mCodePrefix,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Brand">
+    insert into tbl_brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandCode != null">
+        brand_code,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix,
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix,
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null">
+        #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BrandExample" resultType="java.lang.Integer">
+    select count(*) from tbl_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_brand
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCode != null">
+        brand_code = #{record.brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=NCHAR},
+      </if>
+      <if test="record.customerCodePrefix != null">
+        customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.indentCodePrefix != null">
+        indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.mCodePrefix != null">
+        m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_brand
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_code = #{record.brandCode,jdbcType=NCHAR},
+      brand_name = #{record.brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{record.customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{record.indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{record.mCodePrefix,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    <set>
+      <if test="brandCode != null">
+        brand_code = #{brandCode,jdbcType=NCHAR},
+      </if>
+      <if test="brandName != null">
+        brand_name = #{brandName,jdbcType=NCHAR},
+      </if>
+      <if test="customerCodePrefix != null">
+        customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="indentCodePrefix != null">
+        indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="mCodePrefix != null">
+        m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Brand">
+    update tbl_brand
+    set brand_code = #{brandCode,jdbcType=NCHAR},
+      brand_name = #{brandName,jdbcType=NCHAR},
+      customer_code_prefix = #{customerCodePrefix,jdbcType=NCHAR},
+      indent_code_prefix = #{indentCodePrefix,jdbcType=NCHAR},
+      m_code_prefix = #{mCodePrefix,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+</mapper>
