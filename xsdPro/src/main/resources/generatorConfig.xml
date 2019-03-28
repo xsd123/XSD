@@ -81,5 +81,80 @@
 
         <table tableName="tbl_dic_region" domainObjectName="DicRegion" enableDeleteByExample="false">
         </table>
+
+        <table tableName="tbl_branch_target_type" domainObjectName="BranchTargetType" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_brand" domainObjectName="Brand" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_bus" domainObjectName="Bus" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_bus_in_out_log" domainObjectName="BusInOutLog" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_company" domainObjectName="Company" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_education" domainObjectName="Education" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_follow_mode" domainObjectName="FollowMode" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_industry" domainObjectName="Industry" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_media" domainObjectName="Media" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_module" domainObjectName="Module" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_part" domainObjectName="Part" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_part_class" domainObjectName="PartClass" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_part_properties" domainObjectName="PartProperties" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_part_type" domainObjectName="PartType" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_person" domainObjectName="Person" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_person_target" domainObjectName="PersonTarget" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_post" domainObjectName="Post" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_role" domainObjectName="Role" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_role_person" domainObjectName="RolePerson" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_role_range" domainObjectName="RoleRange" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_role_right" domainObjectName="RoleRight" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_stock_bus" domainObjectName="StockBus" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_stock_bus_detail" domainObjectName="StockBusDetail" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_stock_part" domainObjectName="StockPart" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_store" domainObjectName="Store" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_store_house" domainObjectName="StoreHouse" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_store_type" domainObjectName="StoreType" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_unit" domainObjectName="Unit" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_user" domainObjectName="User" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_user_range" domainObjectName="UserRange" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_user_right" domainObjectName="UserRight" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_vehicle_system" domainObjectName="VehicleSystem" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_vehicle_type" domainObjectName="VehicleType" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_vehicle_type_in_color" domainObjectName="VehicleTypeInColor" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_vehicle_type_out_color" domainObjectName="VehicleTypeOutColor" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_vehicle_type_package" domainObjectName="VehicleTypePackage" enableDeleteByExample="false">
+        </table>
+        <table tableName="tbl_work_type" domainObjectName="WorkType" enableDeleteByExample="false">
+        </table>
     </context>
 </generatorConfiguration>

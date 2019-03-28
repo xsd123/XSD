@@ -1491,4 +1491,1792 @@
     where company_id = #{companyId,jdbcType=INTEGER}
       and branch_id = #{branchId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Branch">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="branch_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Supser_branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="branch_property" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="head_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property, 
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.BranchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code, 
+      branch_name, Supser_branch_id, branch_property, 
+      brand_id, head_person_id, remark, 
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR}, 
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT}, 
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="branchCode != null">
+        branch_code,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id,
+      </if>
+      <if test="branchProperty != null">
+        branch_property,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="headPersonId != null">
+        head_person_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchCode != null">
+        #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.BranchExample" resultType="java.lang.Integer">
+    select count(*) from tbl_branch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_branch
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchCode != null">
+        branch_code = #{record.branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=NCHAR},
+      </if>
+      <if test="record.supserBranchId != null">
+        Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchProperty != null">
+        branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.headPersonId != null">
+        head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonName != null">
+        ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_branch
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      branch_code = #{record.branchCode,jdbcType=NCHAR},
+      branch_name = #{record.branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{record.supserBranchId,jdbcType=INTEGER},
+      branch_property = #{record.branchProperty,jdbcType=SMALLINT},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      head_person_id = #{record.headPersonId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_name = #{record.insPersonName,jdbcType=NCHAR},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    set branch_code = #{branchCode,jdbcType=NCHAR},
+      branch_name = #{branchName,jdbcType=NCHAR},
+      Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      branch_property = #{branchProperty,jdbcType=SMALLINT},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      head_person_id = #{headPersonId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
 </mapper>
