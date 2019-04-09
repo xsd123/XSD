@@ -1005,4 +1005,255 @@
       and Vehicle_type_id = #{vehicleTypeId,jdbcType=INTEGER}
       and Vehicle_type_in_color_id = #{vehicleTypeInColorId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleTypeInColor">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_type_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_type_in_color_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_type_in_color_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_type_in_color_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_type_id, Vehicle_type_in_color_id, 
+    Vehicle_type_in_color_code, Vehicle_type_in_color_name, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.VehicleTypeInColorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_type_in_color
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleTypeInColorKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_type_in_color
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+      and Vehicle_type_id = #{vehicleTypeId,jdbcType=INTEGER}
+      and Vehicle_type_in_color_id = #{vehicleTypeInColorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleTypeInColorKey">
+    delete from tbl_vehicle_type_in_color
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+      and Vehicle_type_id = #{vehicleTypeId,jdbcType=INTEGER}
+      and Vehicle_type_in_color_id = #{vehicleTypeInColorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleTypeInColor">
+    insert into tbl_vehicle_type_in_color (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_type_id, Vehicle_type_in_color_id, Vehicle_type_in_color_code, 
+      Vehicle_type_in_color_name, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleTypeId,jdbcType=INTEGER}, #{vehicleTypeInColorId,jdbcType=INTEGER}, #{vehicleTypeInColorCode,jdbcType=NCHAR}, 
+      #{vehicleTypeInColorName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleTypeInColor">
+    insert into tbl_vehicle_type_in_color
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleTypeId != null">
+        Vehicle_type_id,
+      </if>
+      <if test="vehicleTypeInColorId != null">
+        Vehicle_type_in_color_id,
+      </if>
+      <if test="vehicleTypeInColorCode != null">
+        Vehicle_type_in_color_code,
+      </if>
+      <if test="vehicleTypeInColorName != null">
+        Vehicle_type_in_color_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypeId != null">
+        #{vehicleTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypeInColorId != null">
+        #{vehicleTypeInColorId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypeInColorCode != null">
+        #{vehicleTypeInColorCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleTypeInColorName != null">
+        #{vehicleTypeInColorName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.VehicleTypeInColorExample" resultType="java.lang.Integer">
+    select count(*) from tbl_vehicle_type_in_color
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_vehicle_type_in_color
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleSystemId != null">
+        Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleTypeId != null">
+        Vehicle_type_id = #{record.vehicleTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleTypeInColorId != null">
+        Vehicle_type_in_color_id = #{record.vehicleTypeInColorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleTypeInColorCode != null">
+        Vehicle_type_in_color_code = #{record.vehicleTypeInColorCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.vehicleTypeInColorName != null">
+        Vehicle_type_in_color_name = #{record.vehicleTypeInColorName,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_vehicle_type_in_color
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
+      Vehicle_type_id = #{record.vehicleTypeId,jdbcType=INTEGER},
+      Vehicle_type_in_color_id = #{record.vehicleTypeInColorId,jdbcType=INTEGER},
+      Vehicle_type_in_color_code = #{record.vehicleTypeInColorCode,jdbcType=NCHAR},
+      Vehicle_type_in_color_name = #{record.vehicleTypeInColorName,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleTypeInColor">
+    update tbl_vehicle_type_in_color
+    <set>
+      <if test="vehicleTypeInColorCode != null">
+        Vehicle_type_in_color_code = #{vehicleTypeInColorCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleTypeInColorName != null">
+        Vehicle_type_in_color_name = #{vehicleTypeInColorName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+      and Vehicle_type_id = #{vehicleTypeId,jdbcType=INTEGER}
+      and Vehicle_type_in_color_id = #{vehicleTypeInColorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleTypeInColor">
+    update tbl_vehicle_type_in_color
+    set Vehicle_type_in_color_code = #{vehicleTypeInColorCode,jdbcType=NCHAR},
+      Vehicle_type_in_color_name = #{vehicleTypeInColorName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+      and Vehicle_type_id = #{vehicleTypeId,jdbcType=INTEGER}
+      and Vehicle_type_in_color_id = #{vehicleTypeInColorId,jdbcType=INTEGER}
+  </update>
 </mapper>

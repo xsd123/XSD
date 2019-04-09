@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@MapperScan("com.demo.dao")
+@MapperScan("com.example.xsdPro.dao")
 @EnableScheduling
 @EnableCaching
 public class XsdProApplication {

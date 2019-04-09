@@ -1005,4 +1005,255 @@
       and branch_id = #{branchId,jdbcType=INTEGER}
       and part_class_id = #{partClassId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.PartClass">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="part_class_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="part_class_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="part_class_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, part_class_id, part_class_code, part_class_name, remark, ins_person_id, 
+    ins_date
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.PartClassExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_part_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.PartClassKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_part_class
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and part_class_id = #{partClassId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.PartClassKey">
+    delete from tbl_part_class
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and part_class_id = #{partClassId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.PartClass">
+    insert into tbl_part_class (company_id, branch_id, part_class_id, 
+      part_class_code, part_class_name, remark, 
+      ins_person_id, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{partClassId,jdbcType=INTEGER}, 
+      #{partClassCode,jdbcType=NCHAR}, #{partClassName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}, 
+      #{insPersonId,jdbcType=INTEGER}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.PartClass">
+    insert into tbl_part_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="partClassId != null">
+        part_class_id,
+      </if>
+      <if test="partClassCode != null">
+        part_class_code,
+      </if>
+      <if test="partClassName != null">
+        part_class_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="insPersonId != null">
+        ins_person_id,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="partClassId != null">
+        #{partClassId,jdbcType=INTEGER},
+      </if>
+      <if test="partClassCode != null">
+        #{partClassCode,jdbcType=NCHAR},
+      </if>
+      <if test="partClassName != null">
+        #{partClassName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonId != null">
+        #{insPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.PartClassExample" resultType="java.lang.Integer">
+    select count(*) from tbl_part_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_part_class
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.partClassId != null">
+        part_class_id = #{record.partClassId,jdbcType=INTEGER},
+      </if>
+      <if test="record.partClassCode != null">
+        part_class_code = #{record.partClassCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.partClassName != null">
+        part_class_name = #{record.partClassName,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+      <if test="record.insPersonId != null">
+        ins_person_id = #{record.insPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.insDate != null">
+        ins_date = #{record.insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_part_class
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      part_class_id = #{record.partClassId,jdbcType=INTEGER},
+      part_class_code = #{record.partClassCode,jdbcType=NCHAR},
+      part_class_name = #{record.partClassName,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR},
+      ins_person_id = #{record.insPersonId,jdbcType=INTEGER},
+      ins_date = #{record.insDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.PartClass">
+    update tbl_part_class
+    <set>
+      <if test="partClassCode != null">
+        part_class_code = #{partClassCode,jdbcType=NCHAR},
+      </if>
+      <if test="partClassName != null">
+        part_class_name = #{partClassName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonId != null">
+        ins_person_id = #{insPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and part_class_id = #{partClassId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.PartClass">
+    update tbl_part_class
+    set part_class_code = #{partClassCode,jdbcType=NCHAR},
+      part_class_name = #{partClassName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      ins_person_id = #{insPersonId,jdbcType=INTEGER},
+      ins_date = #{insDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and part_class_id = #{partClassId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -2,59 +2,141 @@ package com.example.xsdPro.model;
 
 import java.util.Date;
 
+/**
+ * 公司信息表
+ */
 public class Company {
+
     private Integer id;
 
+    /**
+     *公司代码
+     */
     private String companyCode;
 
+    /**
+     *公司名称
+     */
     private String companyName;
 
+    /**
+     *公司简称
+     */
     private String companyNameJ;
 
+    /**
+     *省
+     */
     private String province;
 
+    /**
+     *市
+     */
     private String city;
 
+    /**
+     *区
+     */
     private String district;
 
+    /**
+     *邮编
+     */
     private String post;
 
+    /**
+     *地址
+     */
     private String eMail;
 
+    /**
+     *级别123456级等
+     */
     private String grade;
 
+    /**
+     *开业时间
+     */
     private Date dateOpening;
 
+    /**
+     *传真
+     */
     private String fax;
 
+    /**
+     *企业性质
+     */
     private String nature;
 
+    /**
+     *公司地址
+     */
     private String address;
 
+    /**
+     *公司状态 1－未审核，2－审核通过，3－审核未通过，4－关闭
+     */
     private Integer statue;
 
+    /**
+     *允许的门店最大数量
+     */
     private Integer stopAmont;
 
+    /**
+     *备注
+     */
     private String remark;
 
+    /**
+     *平台录入人员
+     */
     private String insMan;
 
+    /**
+     *录入时间
+     */
     private Date insDate;
 
+    /**
+     *修改人员
+     */
     private String updateMan;
 
+    /**
+     *修改时间
+     */
     private Date updateDate;
 
+    /**
+     *允许的门店最大数量
+     */
     private String administratorName;
 
+    /**
+     *本公司系统胡超级管理人员用户名，在公司审核通过后，填写此栏目
+     */
     private String administratorPass;
 
+    /**
+     *本公司超级管理人员的密码。在公司审核通过后，填写此栏目
+     */
     private String auditor;
 
+    /**
+     *审核人员
+     */
     private Date auditorDate;
 
+    /**
+     *审核时间
+     */
     private String closeMan;
 
+    /**
+     *关闭时间
+     */
     private Date closeDate;
 
     public Company(Integer id, String companyCode, String companyName, String companyNameJ, String province, String city, String district, String post, String eMail, String grade, Date dateOpening, String fax, String nature, String address, Integer statue, Integer stopAmont, String remark, String insMan, Date insDate, String updateMan, Date updateDate, String administratorName, String administratorPass, String auditor, Date auditorDate, String closeMan, Date closeDate) {

@@ -945,4 +945,240 @@
       and store_id = #{storeId,jdbcType=INTEGER}
       and store_house_id = #{storeHouseId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.StoreHouse">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="store_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="store_house_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="store_house_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="store_house_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, store_id, store_house_id, store_house_code, store_house_name, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.StoreHouseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_store_house
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.StoreHouseKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_store_house
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and store_house_id = #{storeHouseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.StoreHouseKey">
+    delete from tbl_store_house
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and store_house_id = #{storeHouseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.StoreHouse">
+    insert into tbl_store_house (company_id, branch_id, store_id, 
+      store_house_id, store_house_code, store_house_name, 
+      remark)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, 
+      #{storeHouseId,jdbcType=INTEGER}, #{storeHouseCode,jdbcType=NCHAR}, #{storeHouseName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.StoreHouse">
+    insert into tbl_store_house
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeHouseId != null">
+        store_house_id,
+      </if>
+      <if test="storeHouseCode != null">
+        store_house_code,
+      </if>
+      <if test="storeHouseName != null">
+        store_house_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeHouseId != null">
+        #{storeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="storeHouseCode != null">
+        #{storeHouseCode,jdbcType=NCHAR},
+      </if>
+      <if test="storeHouseName != null">
+        #{storeHouseName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.StoreHouseExample" resultType="java.lang.Integer">
+    select count(*) from tbl_store_house
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_store_house
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeHouseId != null">
+        store_house_id = #{record.storeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeHouseCode != null">
+        store_house_code = #{record.storeHouseCode,jdbcType=NCHAR},
+      </if>
+      <if test="record.storeHouseName != null">
+        store_house_name = #{record.storeHouseName,jdbcType=NCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_store_house
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      store_house_id = #{record.storeHouseId,jdbcType=INTEGER},
+      store_house_code = #{record.storeHouseCode,jdbcType=NCHAR},
+      store_house_name = #{record.storeHouseName,jdbcType=NCHAR},
+      remark = #{record.remark,jdbcType=NCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.StoreHouse">
+    update tbl_store_house
+    <set>
+      <if test="storeHouseCode != null">
+        store_house_code = #{storeHouseCode,jdbcType=NCHAR},
+      </if>
+      <if test="storeHouseName != null">
+        store_house_name = #{storeHouseName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and store_house_id = #{storeHouseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.StoreHouse">
+    update tbl_store_house
+    set store_house_code = #{storeHouseCode,jdbcType=NCHAR},
+      store_house_name = #{storeHouseName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and store_house_id = #{storeHouseId,jdbcType=INTEGER}
+  </update>
 </mapper>

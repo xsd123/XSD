@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.PersonMapper">
+
+  <sql id="Base_Column_List">
+    company_id, person_id, person_code, person_name, SEX, branch_id, charge_flag, Birth_date, 
+    CARD, TEL, E_mail, school, major, Education_id, graduation_date, Address, Address1, 
+    Native_place1, Native_place2, Native_place3, statue, in_date, in_Transactor, update_date, 
+    update_Transactor, out_date, out_Transactor, out_serson, post_id, remark
+  </sql>
+
+  <select id="selectByCompanyId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Person">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_person
+    where company_id=#{companyId,jdbcType=INTEGER}
+    and branch_id=#{branchId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Person">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_person
+    where company_id=#{companyId,jdbcType=INTEGER}
+    and branch_id=#{branchId,jdbcType=INTEGER}
+    and person_id=#{personId,jdbcType=INTEGER}
+  </select>
+</mapper>

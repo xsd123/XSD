@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Company">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="company_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="company_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="company_name_j" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="province" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="city" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="district" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="post" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="E_mail" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="grade" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="date_opening" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="fax" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="nature" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stop_amont" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_man" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_man" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="administrator_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="administrator_pass" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Auditor" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Auditor_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Close_man" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Close_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_code, company_name, company_name_j, province, city, district, post, E_mail,
+    grade, date_opening, fax, nature, address, statue, stop_amont, remark, ins_man, ins_date,
+    update_man, update_date, administrator_name, administrator_pass, Auditor, Auditor_date,
+    Close_man, Close_date
+  </sql>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Company">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

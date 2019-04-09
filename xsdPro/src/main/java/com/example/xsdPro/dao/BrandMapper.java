@@ -7,6 +7,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BrandMapper {
+    List<Brand> selectByCompanyId(Integer companyId);
+
+    Brand selectByPrimaryBrandId(Integer companyId,Integer brandId);
+
     int countByExample(BrandExample example);
 
     int deleteByPrimaryKey(BrandKey key);

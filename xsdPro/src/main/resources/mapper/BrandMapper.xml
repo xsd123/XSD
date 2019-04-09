@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.BrandMapper">
+  <sql id="Base_Column_List">
+    company_id, brand_id, brand_code, brand_name, customer_code_prefix, indent_code_prefix, 
+    m_code_prefix, remark
+  </sql>
+  <select id="selectByCompanyId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Brand">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id=#{companyId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPrimaryBrandId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Brand">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_brand
+    where company_id = #{companyId,jdbcType=INTEGER}
+    and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+</mapper>

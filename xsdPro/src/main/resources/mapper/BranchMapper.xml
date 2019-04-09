@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.BranchMapper">
+  <sql id="Base_Column_List">
+    company_id, branch_id, branch_code, branch_name, Supser_branch_id, branch_property,
+    brand_id, head_person_id, remark, ins_person_name, ins_date
+  </sql>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Branch">
+    insert into tbl_branch (company_id, branch_id, branch_code,
+      branch_name, Supser_branch_id, branch_property,
+      brand_id, head_person_id, remark,
+      ins_person_name, ins_date)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{branchCode,jdbcType=NCHAR},
+      #{branchName,jdbcType=NCHAR}, #{supserBranchId,jdbcType=INTEGER}, #{branchProperty,jdbcType=SMALLINT},
+      #{brandId,jdbcType=INTEGER}, #{headPersonId,jdbcType=INTEGER}, #{remark,jdbcType=NCHAR},
+      #{insPersonName,jdbcType=NCHAR}, #{insDate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.BranchKey">
+    delete from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+
+  <update id="updateByCompanyIdSelective" parameterType="com.example.xsdPro.model.Branch">
+    update tbl_branch
+    <set>
+      <if test="branchCode != null">
+        branch_code = #{branchCode,jdbcType=NCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=NCHAR},
+      </if>
+      <if test="supserBranchId != null">
+        Supser_branch_id = #{supserBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchProperty != null">
+        branch_property = #{branchProperty,jdbcType=SMALLINT},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="headPersonId != null">
+        head_person_id = #{headPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+    and branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCompanyId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Branch">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id=#{companyId,jdbcType=INTEGER}
+    and Supser_branch_id is null
+  </select>
+
+  <select id="selectByBranchId"  resultType="com.example.xsdPro.model.Branch">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+    and branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySupserBranchId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Branch">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_branch
+    where company_id = #{companyId,jdbcType=INTEGER}
+    and Supser_branch_id = #{supserBranchId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getMaxBranchId"  resultType="java.lang.Integer">
+    select
+    max(branch_id)
+    from tbl_branch
+  </select>
+</mapper>
