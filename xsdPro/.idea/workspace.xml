@@ -2,376 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c6f3449-4e73-4fe2-a1d4-2ce1c03bea65" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/MyShiroRealm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroConfigBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroRealm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/exception/AllException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/RolePersonVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/UserVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/CompanyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/ModuleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/PersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RolePersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RoleRightService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/CompanyServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/ModuleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/PersonServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RolePersonServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RoleRightServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/utils/RedisService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/CompanyMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ModuleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/PersonMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RolePersonMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RoleRightMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/validate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_azure_adal4j_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_azure_azure_core_0_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_azure_azure_keyvault_0_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_sqlserver_mssql_jdbc_6_1_0_jre7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_nimbusds_lang_tag_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_nimbusds_nimbus_jose_jwt_3_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_nimbusds_oauth2_oidc_sdk_4_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_client_1_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_core_1_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_json_1_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_bind_jaxb_impl_2_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_4_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_stream_stax_api_1_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_jcip_jcip_annotations_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__nz_net_ultraq_thymeleaf_thymeleaf_layout_dialect_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ognl_ognl_3_0_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_4_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_jdbc_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_8_5_37.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_2_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_51.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_groovy_groovy_2_4_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_jaxrs_1_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_xc_1_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_3_6_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_21_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_5_19_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_1_13_18_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_1_2_18_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_1_8_18_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_22_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_2_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring4_2_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_0_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/XsdProApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/XsdProApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BranchMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BranchTargetMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BranchTargetTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BrandMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BusInOutLogMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BusMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/CompanyMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/DicRegionMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/EducationMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/FollowModeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/IndustryMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/MediaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/ModuleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PartClassMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PartMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PartPropertiesMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PartTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PersonMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PersonTargetMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PostMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/RoleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/RolePersonMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/RoleRangeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/RoleRightMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StockBusDetailMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StockBusMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StockPartMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StoreHouseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StoreMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/StoreTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/SysDiagramsMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UnitMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UserRangeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UserRightMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/VehicleSystemMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/VehicleTypeInColorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/VehicleTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/VehicleTypeOutColorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/VehicleTypePackageMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/WorkTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BranchMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BranchTargetMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BranchTargetTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BrandMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BusInOutLogMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/BusMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/CompanyMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/DicRegionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/EducationMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/FollowModeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/IndustryMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/MediaMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/ModuleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PartClassMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PartMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PartPropertiesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PartTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PersonMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PersonTargetMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/PostMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/RoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/RolePersonMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/RoleRangeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/RoleRightMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StockBusDetailMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StockBusMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StockPartMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StoreHouseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StoreMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/StoreTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/SysDiagramsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/UnitMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/UserRangeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/UserRightMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/VehicleSystemMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/VehicleTypeInColorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/VehicleTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/VehicleTypeOutColorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/VehicleTypePackageMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/mapper/WorkTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Branch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTarget.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTargetExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTargetKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTargetType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTargetTypeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BranchTargetTypeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Brand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BrandExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BrandKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Bus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BusExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BusInOutLog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BusInOutLogExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BusInOutLogKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/BusKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/CompanyExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/DicRegion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/DicRegionExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Education.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/EducationExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/EducationKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/FollowMode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/FollowModeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Industry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/IndustryExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Media.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/MediaExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Module.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/ModuleExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Part.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartClassExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartClassKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartPropertiesExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartPropertiesKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartTypeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PartTypeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PersonExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PersonKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PersonTarget.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PersonTargetExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PersonTargetKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PostExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/PostKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RolePerson.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RolePersonExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RolePersonKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRangeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRangeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRightExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/RoleRightKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBusDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBusDetailExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBusDetailKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBusExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockBusKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockPart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockPartExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StockPartKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Store.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreHouse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreHouseExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreHouseKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreTypeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/StoreTypeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/SysDiagrams.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Unit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UnitExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UnitKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRangeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRangeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRightExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserRightKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleSystemExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleSystemKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeInColor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeInColorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeInColorKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeOutColor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeOutColorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypeOutColorKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypePackage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypePackageExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/VehicleTypePackageKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/WorkType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/WorkTypeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/WorkTypeKey.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/XsdProApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/XsdProApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchTargetMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchTargetMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/DicRegionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/DicRegionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/SysDiagramsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/SysDiagramsMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/Branch.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/Branch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTarget.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegionExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegionExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegionExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegionExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/SysDiagrams.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/SysDiagrams.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generator.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xsdPro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xsdPro.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -398,7 +31,35 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1376">
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-112">
+              <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -495,11 +156,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/CompanyServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/CompanyMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/validate.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/validate.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -538,9 +199,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-38" />
-    <option name="y" value="187" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="55" />
+    <option name="y" value="96" />
     <option name="width" value="1616" />
     <option name="height" value="671" />
   </component>
@@ -560,6 +221,39 @@
               <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
               <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xsd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -575,7 +269,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554885516688" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554886394788" />
     <property name="last_opened_file_path" value="F:/IDEAWorkSpace/NEW_DOUNIU_SERVER" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -584,7 +278,7 @@
     <property name="project.structure.proportion" value="0.15234375" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -659,7 +353,7 @@
       <workItem from="1554338327374" duration="2495000" />
       <workItem from="1554685307391" duration="25755000" />
       <workItem from="1554772050660" duration="18983000" />
-      <workItem from="1554858315096" duration="24641000" />
+      <workItem from="1554858315096" duration="25504000" />
     </task>
     <servers />
   </component>
@@ -678,10 +372,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87024000" />
+    <option name="totallyTimeSpent" value="87887000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="165" y="149" width="1616" height="671" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49812734" visible="true" weight="0.25899744" />
       <window_info id="Structure" order="1" sideWeight="0.50187266" side_tool="true" weight="0.20115681" />
@@ -693,7 +388,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32839838" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993573" visible="true" weight="0.24764468" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993573" visible="true" weight="0.34200743" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.499501" weight="0.47644684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1161,13 +856,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/lock.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
@@ -1180,17 +868,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1376">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
+        <state relative-caret-position="-112">
           <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="863">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="268">
+          <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
         </state>
       </provider>
     </entry>
