@@ -1,6 +1,5 @@
 package com.example.xsdPro.controller;
 
-import com.example.xsdPro.config.RedisConfig;
 import com.example.xsdPro.model.Branch;
 import com.example.xsdPro.model.Brand;
 import com.example.xsdPro.model.Company;
@@ -8,6 +7,7 @@ import com.example.xsdPro.model.Person;
 import com.example.xsdPro.model.Vo.BranchVo;
 import com.example.xsdPro.model.Vo.CompanyVo;
 import com.example.xsdPro.service.*;
+import com.example.xsdPro.utils.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,10 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    private ICompanyService iCompanyService;
+    private CompanyService iCompanyService;
 
     @Autowired
-    private IBranchService iBranchService;
+    private BranchService iBranchService;
 
     @Autowired
     private BrandService brandService;
@@ -51,23 +51,22 @@ public class CompanyController {
     public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
     }
-    public IBranchService getiBranchService() {
+    public BranchService getiBranchService() {
         return iBranchService;
     }
-    public void setiBranchService(IBranchService iBranchService) {
+    public void setiBranchService(BranchService iBranchService) {
         this.iBranchService = iBranchService;
     }
-    public ICompanyService getiCompanyService() {
+    public CompanyService getiCompanyService() {
         return iCompanyService;
     }
-    public void setiCompanyService(ICompanyService iCompanyService) {
+
+    public void setiCompanyService(CompanyService iCompanyService) {
         this.iCompanyService = iCompanyService;
     }
 
     @GetMapping("/info")
     public String selectByPrimaryKey(HttpServletRequest request){
-        RedisConfig redisConfig=new RedisConfig();
-
         //根据id查询父级菜单
         Company com=iCompanyService.selectByPrimaryKey(1);
         //查询对应的子级菜单

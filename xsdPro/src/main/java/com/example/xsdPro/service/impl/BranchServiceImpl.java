@@ -2,13 +2,13 @@ package com.example.xsdPro.service.impl;
 
 import com.example.xsdPro.dao.BranchMapper;
 import com.example.xsdPro.model.Branch;
-import com.example.xsdPro.service.IBranchService;
+import com.example.xsdPro.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class BranchServiceImpl implements IBranchService {
+public class BranchServiceImpl implements BranchService {
     @Autowired
     private BranchMapper branchMapper;
     public BranchMapper getBranchMapper() {

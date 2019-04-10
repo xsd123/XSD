@@ -5,11 +5,8 @@ import com.example.xsdPro.model.Person;
 import com.example.xsdPro.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> liyi
+
 @Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
@@ -23,18 +20,19 @@ public class PersonServiceImpl implements PersonService {
         this.personMapper = personMapper;
     }
 
+
     @Override
-<<<<<<< HEAD
-    public List<Person> selectByCompanyId(Integer companyId,Integer branchId) {
+    public List<Person> selectByCompanyId(Integer companyId, Integer branchId) {
         return personMapper.selectByCompanyId(companyId,branchId);
     }
 
     @Override
     public Person selectByPrimaryKey(Integer companyId, Integer branchId, Integer personId) {
         return personMapper.selectByPrimaryKey(companyId,branchId,personId);
-=======
+    }
+
+    @Override
     public Person findALLByPersonId(int personId) {
         return personMapper.findALLByPersonId(personId);
->>>>>>> liyi
     }
 }

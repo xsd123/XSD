@@ -1,6 +1,7 @@
 package com.example.xsdPro.model;
 
-import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class UserKey {
     private Integer companyId;

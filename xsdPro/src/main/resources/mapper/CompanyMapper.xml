@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.xsdPro.dao.CompanyMapper">
-<<<<<<< HEAD
   <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Company">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -39,17 +38,16 @@
     update_man, update_date, administrator_name, administrator_pass, Auditor, Auditor_date,
     Close_man, Close_date
   </sql>
- <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Company">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Company">
     select
     <include refid="Base_Column_List" />
     from tbl_company
     where id = #{id,jdbcType=INTEGER}
-=======
+  </select>
   <select id="selectCompanyCode" parameterType="java.lang.String" resultType="java.lang.Integer">
     select
       id
     from tbl_company
     where company_code = #{companyCode,jdbcType=INTEGER}
->>>>>>> liyi
   </select>
 </mapper>

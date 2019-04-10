@@ -4,7 +4,7 @@ import com.example.xsdPro.model.Branch;
 
 import java.util.List;
 
-public interface IBranchService {
+public interface BranchService {
 
     int insert(Branch record);
 

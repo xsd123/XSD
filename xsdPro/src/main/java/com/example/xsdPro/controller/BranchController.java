@@ -2,7 +2,7 @@ package com.example.xsdPro.controller;
 
 import com.example.xsdPro.model.Branch;
 import com.example.xsdPro.model.Person;
-import com.example.xsdPro.service.IBranchService;
+import com.example.xsdPro.service.BranchService;
 import com.example.xsdPro.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.Map;
 public class BranchController {
 
     @Autowired
-    private IBranchService iBranchService;
+    private BranchService iBranchService;
 
     @Autowired
     private PersonService personService;
@@ -31,10 +31,10 @@ public class BranchController {
         this.personService = personService;
     }
 
-    public IBranchService getiBranchService() {
+    public BranchService getiBranchService() {
         return iBranchService;
     }
-    public void setiBranchService(IBranchService iBranchService) {
+    public void setiBranchService(BranchService iBranchService) {
         this.iBranchService = iBranchService;
     }
 
