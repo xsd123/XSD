@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+       <meta charset="UTF-8">
+       <title>首页实例</title>
+</head>
+<body>
+<p>Test权限</p>
+<h2 shiro:hasPermission="test">
+       有test这个权限啊
+</h2>
+<h2 shiro:hasPermission="test02">
+       有test02这个权限啊
+</h2>
+<p shiro:hasAnyRoles="1"><!-- 角色或判断 -->
+    You are a 1
+</p>
+<p shiro:hasAnyRoles="2"><!-- 角色或判断 -->
+    You are a 2
+</p>
+<a shiro:hasRole="admin" href="abc.html">Administer the system</a><!-- 拥有该角色 -->
+
+</body>
+</html>
