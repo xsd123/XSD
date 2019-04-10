@@ -1,9 +1,9 @@
-package com.example.xsdPro.model.VO;
+package com.example.xsdPro.model.Vo;
 
 import java.util.Date;
 import java.util.List;
 
-public class CompanyVO {
+public class CompanyVo {
     private Integer id;
 
     /**
@@ -138,7 +138,7 @@ public class CompanyVO {
 
 
 
-    private List<BranchVO> branchVOList; //子级菜单集合
+    private List<BranchVo> branchVOList; //子级菜单集合
 
     public Integer getId() {
         return id;
@@ -356,11 +356,11 @@ public class CompanyVO {
         this.closeDate = closeDate;
     }
 
-    public List<BranchVO> getBranchVOList() {
+    public List<BranchVo> getBranchVOList() {
         return branchVOList;
     }
 
-    public void setBranchVOList(List<BranchVO> branchVOList) {
+    public void setBranchVOList(List<BranchVo> branchVOList) {
         this.branchVOList = branchVOList;
     }
 }

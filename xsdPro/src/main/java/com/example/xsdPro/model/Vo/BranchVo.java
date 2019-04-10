@@ -1,4 +1,4 @@
-package com.example.xsdPro.model.VO;
+package com.example.xsdPro.model.Vo;
 
 import com.example.xsdPro.model.BranchKey;
 import com.example.xsdPro.model.Person;
@@ -6,7 +6,7 @@ import com.example.xsdPro.model.Person;
 import java.util.Date;
 import java.util.List;
 
-public class BranchVO extends BranchKey {
+public class BranchVo extends BranchKey {
 
     private String branchCode;
 
@@ -26,13 +26,13 @@ public class BranchVO extends BranchKey {
 
     private Date insDate;
 
-    private List<BranchVO> list;  //子节点集合
+    private List<BranchVo> list;  //子节点集合
 
     private List<Person> personList;
 
-    public BranchVO(){}
+    public BranchVo(){}
 
-    public BranchVO(Integer companyId, Integer branchId, String branchCode, String branchName, Integer supserBranchId, Short branchProperty, Integer brandId, Integer headPersonId, String remark, String insPersonName, Date insDate, List<BranchVO> list, List<Person> personList) {
+    public BranchVo(Integer companyId, Integer branchId, String branchCode, String branchName, Integer supserBranchId, Short branchProperty, Integer brandId, Integer headPersonId, String remark, String insPersonName, Date insDate, List<BranchVo> list, List<Person> personList) {
         super(companyId, branchId);
         this.branchCode = branchCode;
         this.branchName = branchName;
@@ -119,11 +119,11 @@ public class BranchVO extends BranchKey {
         this.insDate = insDate;
     }
 
-    public List<BranchVO> getList() {
+    public List<BranchVo> getList() {
         return list;
     }
 
-    public void setList(List<BranchVO> list) {
+    public void setList(List<BranchVo> list) {
         this.list = list;
     }
 

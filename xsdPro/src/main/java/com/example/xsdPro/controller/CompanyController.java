@@ -5,10 +5,9 @@ import com.example.xsdPro.model.Branch;
 import com.example.xsdPro.model.Brand;
 import com.example.xsdPro.model.Company;
 import com.example.xsdPro.model.Person;
-import com.example.xsdPro.model.VO.BranchVO;
-import com.example.xsdPro.model.VO.CompanyVO;
+import com.example.xsdPro.model.Vo.BranchVo;
+import com.example.xsdPro.model.Vo.CompanyVo;
 import com.example.xsdPro.service.*;
-import com.example.xsdPro.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,12 +73,12 @@ public class CompanyController {
         //查询对应的子级菜单
         List<Branch> branchList=iBranchService.selectByCompanyId(com.getId());//2级节点
         //2级节点list 每个list包含了所有他的下级的菜单
-        List<BranchVO> branchVOList=new ArrayList<>();
+        List<BranchVo> branchVOList=new ArrayList<>();
         for (Branch branch :branchList){
-            BranchVO vo=branchToVO(branch);
+            BranchVo vo=branchToVO(branch);
             //根据二级节点加公司编号查询下级菜单
             List<Branch> branchChildnodeList=iBranchService.selectBySupserBranchId(1,branch.getBranchId());//3级节点
-            List<BranchVO> branchVOChildnodeList=new ArrayList<>();
+            List<BranchVo> branchVOChildnodeList=new ArrayList<>();
             List<Person> personList=new ArrayList<>();
             for (Branch branch1 :branchChildnodeList){
                 branchVOChildnodeList.add(branchToVO(branch1));
@@ -93,7 +92,7 @@ public class CompanyController {
             branchVOList.add(vo);
         }
 
-        CompanyVO companyVO=entityToVO(com);
+        CompanyVo companyVO=entityToVO(com);
         companyVO.setBranchVOList(branchVOList);
 
         List<Brand> brandList=brandService.selectByCompanyId(com.getId());
@@ -101,17 +100,12 @@ public class CompanyController {
         request.setAttribute("brandList",brandList);
         request.setAttribute("companyName",com.getCompanyName());
         request.setAttribute("companyVO",companyVO);
-
-
-        System.out.println("测试redis:");
-        redisService.set("test","12111131315645");
-        System.out.println("测试输出:"+redisService.get("test"));
         return "company";
     }
 
     //这里是个转型
-    private CompanyVO entityToVO(Company entity){
-        CompanyVO vo=new CompanyVO();
+    private CompanyVo entityToVO(Company entity){
+        CompanyVo vo=new CompanyVo();
         vo.setAddress(entity.getAddress());
         vo.setAdministratorName(entity.getAdministratorName());
         vo.setAdministratorPass(entity.getAdministratorPass());
@@ -143,8 +137,8 @@ public class CompanyController {
     }
 
     //子节点表转型VO
-    private BranchVO branchToVO(Branch entity){
-        BranchVO vo=new BranchVO();
+    private BranchVo branchToVO(Branch entity){
+        BranchVo vo=new BranchVo();
         vo.setBranchCode(entity.getBranchCode());
         vo.setBranchName(entity.getBranchName());
         vo.setBranchProperty(entity.getBranchProperty());
