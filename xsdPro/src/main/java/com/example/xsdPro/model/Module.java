@@ -9,11 +9,20 @@ public class Module {
 
     private String remark;
 
-    public Module(Integer id, String moduleCode, String moduleName, String remark) {
+    private String parentId;
+
+    private String permission;
+
+    private String url;
+
+    public Module(Integer id, String moduleCode, String moduleName, String remark, String parentId, String permission, String url) {
         this.id = id;
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.remark = remark;
+        this.parentId = parentId;
+        this.permission = permission;
+        this.url = url;
     }
 
     public Module() {
@@ -50,5 +59,29 @@ public class Module {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission == null ? null : permission.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 }

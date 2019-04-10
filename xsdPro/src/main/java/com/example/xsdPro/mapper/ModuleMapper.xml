@@ -7,83 +7,14 @@
       <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, module_code, module_name, remark
+    id, module_code, module_name, remark, parent_id, permission, url
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -96,9 +27,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module (id, module_code, module_name, 
-      remark)
+      remark, parent_id, permission, 
+      url)
     values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
-      #{remark,jdbcType=NCHAR})
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module
@@ -115,6 +48,15 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -129,44 +71,17 @@
       <if test="remark != null">
         #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultType="java.lang.Integer">
-    select count(*) from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_module
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.moduleCode != null">
-        module_code = #{record.moduleCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleName != null">
-        module_name = #{record.moduleName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_module
-    set id = #{record.id,jdbcType=INTEGER},
-      module_code = #{record.moduleCode,jdbcType=NCHAR},
-      module_name = #{record.moduleName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
     update tbl_module
     <set>
@@ -179,6 +94,15 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -186,7 +110,10 @@
     update tbl_module
     set module_code = #{moduleCode,jdbcType=NCHAR},
       module_name = #{moduleName,jdbcType=NCHAR},
-      remark = #{remark,jdbcType=NCHAR}
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
@@ -195,83 +122,14 @@
       <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, module_code, module_name, remark
+    id, module_code, module_name, remark, parent_id, permission, url
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -284,9 +142,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module (id, module_code, module_name, 
-      remark)
+      remark, parent_id, permission, 
+      url)
     values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
-      #{remark,jdbcType=NCHAR})
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module
@@ -303,6 +163,15 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -317,44 +186,17 @@
       <if test="remark != null">
         #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultType="java.lang.Integer">
-    select count(*) from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_module
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.moduleCode != null">
-        module_code = #{record.moduleCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleName != null">
-        module_name = #{record.moduleName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_module
-    set id = #{record.id,jdbcType=INTEGER},
-      module_code = #{record.moduleCode,jdbcType=NCHAR},
-      module_name = #{record.moduleName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
     update tbl_module
     <set>
@@ -367,6 +209,15 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -374,7 +225,10 @@
     update tbl_module
     set module_code = #{moduleCode,jdbcType=NCHAR},
       module_name = #{moduleName,jdbcType=NCHAR},
-      remark = #{remark,jdbcType=NCHAR}
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
@@ -383,83 +237,14 @@
       <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, module_code, module_name, remark
+    id, module_code, module_name, remark, parent_id, permission, url
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -472,9 +257,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module (id, module_code, module_name, 
-      remark)
+      remark, parent_id, permission, 
+      url)
     values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
-      #{remark,jdbcType=NCHAR})
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module
@@ -491,6 +278,15 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -505,44 +301,17 @@
       <if test="remark != null">
         #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultType="java.lang.Integer">
-    select count(*) from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_module
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.moduleCode != null">
-        module_code = #{record.moduleCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleName != null">
-        module_name = #{record.moduleName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_module
-    set id = #{record.id,jdbcType=INTEGER},
-      module_code = #{record.moduleCode,jdbcType=NCHAR},
-      module_name = #{record.moduleName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
     update tbl_module
     <set>
@@ -555,6 +324,15 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -562,7 +340,10 @@
     update tbl_module
     set module_code = #{moduleCode,jdbcType=NCHAR},
       module_name = #{moduleName,jdbcType=NCHAR},
-      remark = #{remark,jdbcType=NCHAR}
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
@@ -571,83 +352,14 @@
       <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, module_code, module_name, remark
+    id, module_code, module_name, remark, parent_id, permission, url
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -660,9 +372,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module (id, module_code, module_name, 
-      remark)
+      remark, parent_id, permission, 
+      url)
     values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
-      #{remark,jdbcType=NCHAR})
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
     insert into tbl_module
@@ -679,6 +393,15 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -693,44 +416,17 @@
       <if test="remark != null">
         #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.ModuleExample" resultType="java.lang.Integer">
-    select count(*) from tbl_module
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_module
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.moduleCode != null">
-        module_code = #{record.moduleCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleName != null">
-        module_name = #{record.moduleName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_module
-    set id = #{record.id,jdbcType=INTEGER},
-      module_code = #{record.moduleCode,jdbcType=NCHAR},
-      module_name = #{record.moduleName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
     update tbl_module
     <set>
@@ -743,6 +439,15 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=NCHAR},
       </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -750,7 +455,3115 @@
     update tbl_module
     set module_code = #{moduleCode,jdbcType=NCHAR},
       module_name = #{moduleName,jdbcType=NCHAR},
-      remark = #{remark,jdbcType=NCHAR}
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Module">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="module_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_code, module_name, remark, parent_id, permission, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module (id, module_code, module_name, 
+      remark, parent_id, permission, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{moduleCode,jdbcType=NCHAR}, #{moduleName,jdbcType=NCHAR}, 
+      #{remark,jdbcType=NCHAR}, #{parentId,jdbcType=NCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Module">
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=NCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Module">
+    update tbl_module
+    set module_code = #{moduleCode,jdbcType=NCHAR},
+      module_name = #{moduleName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR},
+      parent_id = #{parentId,jdbcType=NCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

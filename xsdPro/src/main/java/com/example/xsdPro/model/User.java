@@ -13,13 +13,16 @@ public class User extends UserKey {
 
     private Date insDate;
 
-    public User(Integer companyId, String userCode, String userPass, Integer personId, Integer statue, String insPersonName, Date insDate) {
+    private String salt;
+
+    public User(Integer companyId, String userCode, String userPass, Integer personId, Integer statue, String insPersonName, Date insDate, String salt) {
         super(companyId, userCode);
         this.userPass = userPass;
         this.personId = personId;
         this.statue = statue;
         this.insPersonName = insPersonName;
         this.insDate = insDate;
+        this.salt = salt;
     }
 
     public User() {
@@ -64,5 +67,13 @@ public class User extends UserKey {
 
     public void setInsDate(Date insDate) {
         this.insDate = insDate;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
     }
 }

@@ -18,7 +18,11 @@ public class BusInOutLog extends BusInOutLogKey {
 
     private Date dateTime;
 
-    public BusInOutLog(Integer companyId, Integer branchId, Integer id, Integer busId, Boolean inOutFlag, String indentNumer, Integer vehicleTypePackageId, BigDecimal amount, Integer personId, Date dateTime) {
+    private String frameNumber;
+
+    private String engineNumber;
+
+    public BusInOutLog(Integer companyId, Integer branchId, Integer id, Integer busId, Boolean inOutFlag, String indentNumer, Integer vehicleTypePackageId, BigDecimal amount, Integer personId, Date dateTime, String frameNumber, String engineNumber) {
         super(companyId, branchId, id);
         this.busId = busId;
         this.inOutFlag = inOutFlag;
@@ -27,6 +31,8 @@ public class BusInOutLog extends BusInOutLogKey {
         this.amount = amount;
         this.personId = personId;
         this.dateTime = dateTime;
+        this.frameNumber = frameNumber;
+        this.engineNumber = engineNumber;
     }
 
     public BusInOutLog() {
@@ -87,5 +93,21 @@ public class BusInOutLog extends BusInOutLogKey {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getFrameNumber() {
+        return frameNumber;
+    }
+
+    public void setFrameNumber(String frameNumber) {
+        this.frameNumber = frameNumber == null ? null : frameNumber.trim();
+    }
+
+    public String getEngineNumber() {
+        return engineNumber;
+    }
+
+    public void setEngineNumber(String engineNumber) {
+        this.engineNumber = engineNumber == null ? null : engineNumber.trim();
     }
 }

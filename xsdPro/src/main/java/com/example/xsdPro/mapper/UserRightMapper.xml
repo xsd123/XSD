@@ -13,82 +13,10 @@
       <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
     audit_right
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -166,58 +94,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultType="java.lang.Integer">
-    select count(*) from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_user_right
-    <set>
-      <if test="record.companyId != null">
-        Company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.userCode != null">
-        user_code = #{record.userCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleId != null">
-        Module_id = #{record.moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="record.insRight != null">
-        ins_right = #{record.insRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.updateRight != null">
-        update_right = #{record.updateRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.delRight != null">
-        del_right = #{record.delRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.serchRight != null">
-        serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.auditRight != null">
-        audit_right = #{record.auditRight,jdbcType=SMALLINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_user_right
-    set Company_id = #{record.companyId,jdbcType=INTEGER},
-      user_code = #{record.userCode,jdbcType=NCHAR},
-      Module_id = #{record.moduleId,jdbcType=INTEGER},
-      ins_right = #{record.insRight,jdbcType=SMALLINT},
-      update_right = #{record.updateRight,jdbcType=SMALLINT},
-      del_right = #{record.delRight,jdbcType=SMALLINT},
-      serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      audit_right = #{record.auditRight,jdbcType=SMALLINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
     <set>
@@ -264,82 +140,10 @@
       <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
     audit_right
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -417,58 +221,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultType="java.lang.Integer">
-    select count(*) from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_user_right
-    <set>
-      <if test="record.companyId != null">
-        Company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.userCode != null">
-        user_code = #{record.userCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleId != null">
-        Module_id = #{record.moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="record.insRight != null">
-        ins_right = #{record.insRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.updateRight != null">
-        update_right = #{record.updateRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.delRight != null">
-        del_right = #{record.delRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.serchRight != null">
-        serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.auditRight != null">
-        audit_right = #{record.auditRight,jdbcType=SMALLINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_user_right
-    set Company_id = #{record.companyId,jdbcType=INTEGER},
-      user_code = #{record.userCode,jdbcType=NCHAR},
-      Module_id = #{record.moduleId,jdbcType=INTEGER},
-      ins_right = #{record.insRight,jdbcType=SMALLINT},
-      update_right = #{record.updateRight,jdbcType=SMALLINT},
-      del_right = #{record.delRight,jdbcType=SMALLINT},
-      serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      audit_right = #{record.auditRight,jdbcType=SMALLINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
     <set>
@@ -515,82 +267,10 @@
       <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
     audit_right
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -668,58 +348,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultType="java.lang.Integer">
-    select count(*) from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_user_right
-    <set>
-      <if test="record.companyId != null">
-        Company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.userCode != null">
-        user_code = #{record.userCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.moduleId != null">
-        Module_id = #{record.moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="record.insRight != null">
-        ins_right = #{record.insRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.updateRight != null">
-        update_right = #{record.updateRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.delRight != null">
-        del_right = #{record.delRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.serchRight != null">
-        serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.auditRight != null">
-        audit_right = #{record.auditRight,jdbcType=SMALLINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_user_right
-    set Company_id = #{record.companyId,jdbcType=INTEGER},
-      user_code = #{record.userCode,jdbcType=NCHAR},
-      Module_id = #{record.moduleId,jdbcType=INTEGER},
-      ins_right = #{record.insRight,jdbcType=SMALLINT},
-      update_right = #{record.updateRight,jdbcType=SMALLINT},
-      del_right = #{record.delRight,jdbcType=SMALLINT},
-      serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      audit_right = #{record.auditRight,jdbcType=SMALLINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
     <set>
@@ -766,82 +394,10 @@
       <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
     audit_right
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -919,58 +475,3435 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.UserRightExample" resultType="java.lang.Integer">
-    select count(*) from tbl_user_right
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
     <set>
-      <if test="record.companyId != null">
-        Company_id = #{record.companyId,jdbcType=INTEGER},
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
       </if>
-      <if test="record.userCode != null">
-        user_code = #{record.userCode,jdbcType=NCHAR},
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
       </if>
-      <if test="record.moduleId != null">
-        Module_id = #{record.moduleId,jdbcType=INTEGER},
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
       </if>
-      <if test="record.insRight != null">
-        ins_right = #{record.insRight,jdbcType=SMALLINT},
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
       </if>
-      <if test="record.updateRight != null">
-        update_right = #{record.updateRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.delRight != null">
-        del_right = #{record.delRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.serchRight != null">
-        serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      </if>
-      <if test="record.auditRight != null">
-        audit_right = #{record.auditRight,jdbcType=SMALLINT},
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
-    set Company_id = #{record.companyId,jdbcType=INTEGER},
-      user_code = #{record.userCode,jdbcType=NCHAR},
-      Module_id = #{record.moduleId,jdbcType=INTEGER},
-      ins_right = #{record.insRight,jdbcType=SMALLINT},
-      update_right = #{record.updateRight,jdbcType=SMALLINT},
-      del_right = #{record.delRight,jdbcType=SMALLINT},
-      serch_right = #{record.serchRight,jdbcType=SMALLINT},
-      audit_right = #{record.auditRight,jdbcType=SMALLINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    <set>
+      <if test="insRight != null">
+        ins_right = #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        update_right = #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        del_right = #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        serch_right = #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        audit_right = #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.UserRight">
+    update tbl_user_right
+    set ins_right = #{insRight,jdbcType=SMALLINT},
+      update_right = #{updateRight,jdbcType=SMALLINT},
+      del_right = #{delRight,jdbcType=SMALLINT},
+      serch_right = #{serchRight,jdbcType=SMALLINT},
+      audit_right = #{auditRight,jdbcType=SMALLINT}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.UserRight">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="user_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <idArg column="Module_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="update_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="del_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="serch_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="audit_right" javaType="java.lang.Short" jdbcType="SMALLINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, user_code, Module_id, ins_right, update_right, del_right, serch_right, 
+    audit_right
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.UserRightKey">
+    delete from tbl_user_right
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and user_code = #{userCode,jdbcType=NCHAR}
+      and Module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right (Company_id, user_code, Module_id, 
+      ins_right, update_right, del_right, 
+      serch_right, audit_right)
+    values (#{companyId,jdbcType=INTEGER}, #{userCode,jdbcType=NCHAR}, #{moduleId,jdbcType=INTEGER}, 
+      #{insRight,jdbcType=SMALLINT}, #{updateRight,jdbcType=SMALLINT}, #{delRight,jdbcType=SMALLINT}, 
+      #{serchRight,jdbcType=SMALLINT}, #{auditRight,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.UserRight">
+    insert into tbl_user_right
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="insRight != null">
+        ins_right,
+      </if>
+      <if test="updateRight != null">
+        update_right,
+      </if>
+      <if test="delRight != null">
+        del_right,
+      </if>
+      <if test="serchRight != null">
+        serch_right,
+      </if>
+      <if test="auditRight != null">
+        audit_right,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=NCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="insRight != null">
+        #{insRight,jdbcType=SMALLINT},
+      </if>
+      <if test="updateRight != null">
+        #{updateRight,jdbcType=SMALLINT},
+      </if>
+      <if test="delRight != null">
+        #{delRight,jdbcType=SMALLINT},
+      </if>
+      <if test="serchRight != null">
+        #{serchRight,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRight != null">
+        #{auditRight,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.UserRight">
     update tbl_user_right
     <set>
