@@ -2,8 +2,10 @@ package com.example.xsdPro.controller;
 
 import com.example.xsdPro.model.Branch;
 import com.example.xsdPro.model.Person;
+import com.example.xsdPro.model.User;
 import com.example.xsdPro.service.BranchService;
 import com.example.xsdPro.service.PersonService;
+import com.example.xsdPro.utils.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,9 @@ public class BranchController {
     @Autowired
     private PersonService personService;
 
+    @Autowired
+    private RedisService redisService ;
+
     public PersonService getPersonService() {
         return personService;
     }
@@ -38,11 +43,13 @@ public class BranchController {
         this.iBranchService = iBranchService;
     }
 
+
     @PostMapping("/getBranchInfo")
     @ResponseBody
     public Map<String, Object> getBranchInfo(Integer branchId, ModelAndView mv){
-        Branch branch=iBranchService.selectByBranchId(1,branchId);
-        Person person=personService.selectByPrimaryKey(1,branch.getBranchId(),branch.getHeadPersonId());
+        User user= (User) redisService.get("user");
+        Branch branch=iBranchService.selectByBranchId(user.getCompanyId(),branchId);
+        Person person=personService.selectByPrimaryKey(user.getCompanyId(),branch.getBranchId(),branch.getHeadPersonId());
         mv.addObject("person",person);
         mv.addObject("branch",branch);
         return mv.getModel();
@@ -51,8 +58,9 @@ public class BranchController {
     @PostMapping("/updateBranchInfo")
     @ResponseBody
     public Map<String, Object> updateBranchInfo(Branch bran, ModelAndView mv){
-        bran.setCompanyId(1);
-        bran.setInsPersonName("Testers");
+        User user= (User) redisService.get("user");
+        bran.setCompanyId(user.getCompanyId());
+        bran.setInsPersonName(user.getInsPersonName());
         bran.setInsDate(new Date());
         if(bran.getSupserBranchId()==0){
             bran.setSupserBranchId(null);
@@ -72,11 +80,12 @@ public class BranchController {
     @PostMapping("/delectBranchInfo")
     @ResponseBody
     public Map<String, Object> delectBranchInfo(Integer branchId,Integer supserBranchId, ModelAndView mv){
-        if(iBranchService.selectBySupserBranchId(1,branchId).size()>0){
+        User user= (User) redisService.get("user");
+        if(iBranchService.selectBySupserBranchId(user.getCompanyId(),branchId).size()>0){
             mv.addObject("Result","此节点下面有子节点不能删除");
             return  mv.getModel();
         }
-        int i=iBranchService.deleteByPrimaryKey(1,branchId);
+        int i=iBranchService.deleteByPrimaryKey(user.getCompanyId(),branchId);
         if(i>0){
             mv.addObject("Result","删除成功");
         }else{
@@ -88,14 +97,15 @@ public class BranchController {
     @PostMapping("/insertBranch")
     @ResponseBody
     public Map<String, Object> insertBranch(Branch bran, ModelAndView mv){
+        User user= (User) redisService.get("user");
         int branchid=iBranchService.getMaxBranchId();
         if (bran.getBranchId()!=null){
             bran.setSupserBranchId(bran.getBranchId());
         }
         branchid+=1;
-        bran.setCompanyId(1);
+        bran.setCompanyId(user.getCompanyId());
         bran.setBranchId(branchid);
-        bran.setInsPersonName("Testers");
+        bran.setInsPersonName(user.getInsPersonName());
         bran.setInsDate(new Date());
         if(bran.getBranchProperty()==1){
             bran.setBrandId(null);

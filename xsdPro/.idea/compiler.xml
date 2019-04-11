@@ -9,8 +9,5 @@
         <module name="xsd" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="xsd" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

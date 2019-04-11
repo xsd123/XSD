@@ -2,53 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c6f3449-4e73-4fe2-a1d4-2ce1c03bea65" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/MyShiroRealm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroConfigBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroRealm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BranchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BranchMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/BrandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/CompanyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/CompanyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PersonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/PersonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/UserVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/UserVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/CompanyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/IBranchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/BranchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/ICompanyService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/BranchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/BranchServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/CompanyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/CompanyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/PersonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/PersonServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CompanyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CompanyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/PersonMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PersonMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/XsdProApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/XsdProApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchTargetMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/BranchTargetMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/DicRegionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/DicRegionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/SysDiagramsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/dao/SysDiagramsMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/Branch.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/Branch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTarget.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/BranchTargetKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/DicRegion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/SysDiagrams.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/xsdPro/model/SysDiagrams.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generator.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/success.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,71 +35,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="company.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/company.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#table#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BranchController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="42" column="80" lean-forward="true" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#847#848#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#948#949#0" expanded="true" />
-                <element signature="e#998#999#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="74" column="55" lean-forward="true" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompanyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1705#1706#0" expanded="true" />
-                <element signature="e#1743#1744#0" expanded="true" />
-                <element signature="e#1813#1814#0" expanded="true" />
-                <element signature="e#1867#1868#0" expanded="true" />
-                <element signature="method#entityToVO#0;class#CompanyController#0" />
-                <element signature="method#branchToVO#0;class#CompanyController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -187,8 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/ModuleMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/ModuleMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/RoleMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/RoleRightMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RoleServiceImpl.java" />
@@ -197,8 +93,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/ModuleService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/ModuleServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RoleRightServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/list.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/success.html" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/PartMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/RoleVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/vo/RolePersonVo.java" />
@@ -227,7 +121,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/PersonServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/CompanyService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/CompanyServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/UserKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/Vo/UserVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/UserServiceImpl.java" />
@@ -237,7 +130,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/utils/RedisService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/success.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/company.html" />
       </list>
     </option>
   </component>
@@ -285,11 +183,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="55" />
-    <option name="y" value="96" />
-    <option name="width" value="1616" />
-    <option name="height" value="671" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="16" />
+    <option name="y" value="108" />
+    <option name="width" value="1620" />
+    <option name="height" value="747" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -297,8 +195,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,7 +235,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="xsdPro" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xsdPro" type="b2602c69:ProjectViewProjectNode" />
@@ -369,6 +265,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -393,6 +291,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\XSDProject\xsdPro\src\main\java\com\example\xsdPro\config" />
       <recent name="D:\XSD\xsdPro\src\main\resources\mapper" />
       <recent name="D:\XSD\xsdPro\src\main\java\com\example\xsdPro\utils" />
       <recent name="D:\XSD\xsdPro\src\main\resources" />
@@ -460,7 +359,6 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7950de83-d574-44a2-b1d5-2c77a569c8a9" name="Default Changelist" comment="" />
       <created>1553739846040</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -481,7 +379,8 @@
       <workItem from="1554718149070" duration="169000" />
       <workItem from="1554771603893" duration="17065000" />
       <workItem from="1554794605593" duration="5212000" />
-      <workItem from="1554858491726" duration="13535000" />
+      <workItem from="1554858491726" duration="15355000" />
+      <workItem from="1554944726654" duration="3421000" />
     </task>
     <servers />
   </component>
@@ -500,11 +399,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91730000" />
+    <option name="totallyTimeSpent" value="96971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5012854" side_tool="true" weight="0.31417114" />
@@ -516,7 +414,7 @@
       <window_info id="Structure" order="1" sideWeight="0.5013369" side_tool="true" weight="0.218509" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.37299466" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.25970548" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.25167337" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
@@ -524,13 +422,12 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.49871466" visible="true" weight="0.37751004" />
+      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.49871466" weight="0.36144578" />
       <window_info anchor="bottom" id="Spring" order="12" />
       <window_info anchor="bottom" id="Terminal" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4986631" visible="true" weight="0.2114396" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4986631" visible="true" weight="0.21401028" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32969153" />
       <window_info id="Web" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32797858" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -540,6 +437,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="right" id="Maven" order="8" visible="true" weight="0.15" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32797858" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,62 +448,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RolePersonServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/shiro/ShiroRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="43" column="2" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="50" column="24" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/success.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/LoginHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/jquery.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/favicon.ico" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/logo.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/list.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/validate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -613,27 +462,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/lock.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1376">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RedisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4200">
-          <caret line="170" column="5" lean-forward="true" selection-start-line="170" selection-start-column="5" selection-end-line="170" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/RedisService.java" />
     <entry file="file://E:/备份/xsdPro2019-4-9-2/src/main/java/com/example/xsdPro/dao/BranchMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -645,9 +475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,9 +482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -707,13 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="30" column="75" lean-forward="true" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#652#653#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-            <element signature="e#972#973#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -745,13 +562,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/ICompanyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="10" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/ICompanyService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/dao/CompanyMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -780,13 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#683#684#0" expanded="true" />
-            <element signature="e#747#748#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -801,9 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,9 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,11 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1217#1218#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -840,11 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -868,16 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/utils/RedisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -885,26 +663,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1705#1706#0" expanded="true" />
-            <element signature="e#1743#1744#0" expanded="true" />
-            <element signature="e#1813#1814#0" expanded="true" />
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="method#entityToVO#0;class#CompanyController#0" />
-            <element signature="method#branchToVO#0;class#CompanyController#0" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/config/RedisConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/2.1.6.RELEASE/thymeleaf-2.1.6.RELEASE.jar!/org/thymeleaf/context/AbstractContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.22.RELEASE/spring-web-4.3.22.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/company.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        <state relative-caret-position="288">
+          <caret line="189" column="54" lean-forward="true" selection-start-line="189" selection-start-column="54" selection-end-line="189" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -916,27 +723,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="42" column="80" lean-forward="true" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
+        <state relative-caret-position="130">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#998#999#0" expanded="true" />
+            <element signature="method#entityToVO#0;class#CompanyController#0" />
+            <element signature="method#branchToVO#0;class#CompanyController#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/BranchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/PersonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="74" column="55" lean-forward="true" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
+        <state relative-caret-position="166">
+          <caret line="78" column="38" selection-start-line="78" selection-start-column="38" selection-end-line="78" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/utils/RedisService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/xsdPro/service/impl/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
