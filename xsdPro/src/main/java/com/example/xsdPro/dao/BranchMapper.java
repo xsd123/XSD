@@ -1,18 +1,25 @@
 package com.example.xsdPro.dao;
 
 import com.example.xsdPro.model.Branch;
-import com.example.xsdPro.model.BranchKey;
+
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BranchMapper {
-    int deleteByPrimaryKey(BranchKey key);
 
     int insert(Branch record);
 
-    int insertSelective(Branch record);
+    int deleteByPrimaryKey(@Param("companyId")Integer companyId,@Param("branchId")Integer branchId);
 
-    Branch selectByPrimaryKey(BranchKey key);
+    int updateByCompanyIdSelective(Branch record);
 
-    int updateByPrimaryKeySelective(Branch record);
+    int getMaxBranchId();
 
-    int updateByPrimaryKey(Branch record);
+    List<Branch> selectByCompanyId(Integer companyId);
+
+    List<Branch> selectBySupserBranchId(@Param("companyId")Integer companyId,@Param("supserBranchId")Integer supserBranchId);
+
+    Branch selectByBranchId(@Param("companyId") Integer companyId, @Param("branchId")Integer branchId);
+
 }

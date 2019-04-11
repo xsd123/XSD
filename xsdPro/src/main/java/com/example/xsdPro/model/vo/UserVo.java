@@ -1,8 +1,8 @@
-package com.example.xsdPro.model.vo;
+package com.example.xsdPro.model.Vo;
 
 import com.example.xsdPro.model.UserKey;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 

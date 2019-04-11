@@ -10169,4 +10169,524 @@
       and bus_id = #{busId,jdbcType=INTEGER}
       and id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.StockBusDetail">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="store_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="bus_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="store_house_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Frame_number" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Engine_number" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="standard" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="bus_year" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="manufacture_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="T_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="in_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="in_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="free_day" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_type_package_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="amount" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="price" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="indent_number" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="in_number" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="out_number" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="out_flag" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="out_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="out_person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lock_flag" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, branch_id, store_id, bus_id, id, store_house_id, Frame_number, Engine_number, 
+    standard, bus_year, manufacture_date, T_date, in_date, in_person_id, free_day, Vehicle_type_package_id, 
+    amount, price, indent_number, in_number, out_number, out_flag, out_date, out_person_id, 
+    lock_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.example.xsdPro.model.StockBusDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_stock_bus_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.StockBusDetailKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_stock_bus_detail
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and bus_id = #{busId,jdbcType=INTEGER}
+      and id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.StockBusDetailKey">
+    delete from tbl_stock_bus_detail
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and bus_id = #{busId,jdbcType=INTEGER}
+      and id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.StockBusDetail">
+    insert into tbl_stock_bus_detail (company_id, branch_id, store_id, 
+      bus_id, id, store_house_id, 
+      Frame_number, Engine_number, standard, 
+      bus_year, manufacture_date, T_date, 
+      in_date, in_person_id, free_day, 
+      Vehicle_type_package_id, amount, price, 
+      indent_number, in_number, out_number, 
+      out_flag, out_date, out_person_id, 
+      lock_flag)
+    values (#{companyId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, 
+      #{busId,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{storeHouseId,jdbcType=INTEGER}, 
+      #{frameNumber,jdbcType=NCHAR}, #{engineNumber,jdbcType=NCHAR}, #{standard,jdbcType=NCHAR}, 
+      #{busYear,jdbcType=NCHAR}, #{manufactureDate,jdbcType=TIMESTAMP}, #{tDate,jdbcType=TIMESTAMP}, 
+      #{inDate,jdbcType=TIMESTAMP}, #{inPersonId,jdbcType=INTEGER}, #{freeDay,jdbcType=INTEGER}, 
+      #{vehicleTypePackageId,jdbcType=INTEGER}, #{amount,jdbcType=NUMERIC}, #{price,jdbcType=NUMERIC}, 
+      #{indentNumber,jdbcType=NCHAR}, #{inNumber,jdbcType=NCHAR}, #{outNumber,jdbcType=NCHAR}, 
+      #{outFlag,jdbcType=BIT}, #{outDate,jdbcType=TIMESTAMP}, #{outPersonId,jdbcType=INTEGER}, 
+      #{lockFlag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.StockBusDetail">
+    insert into tbl_stock_bus_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="busId != null">
+        bus_id,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeHouseId != null">
+        store_house_id,
+      </if>
+      <if test="frameNumber != null">
+        Frame_number,
+      </if>
+      <if test="engineNumber != null">
+        Engine_number,
+      </if>
+      <if test="standard != null">
+        standard,
+      </if>
+      <if test="busYear != null">
+        bus_year,
+      </if>
+      <if test="manufactureDate != null">
+        manufacture_date,
+      </if>
+      <if test="tDate != null">
+        T_date,
+      </if>
+      <if test="inDate != null">
+        in_date,
+      </if>
+      <if test="inPersonId != null">
+        in_person_id,
+      </if>
+      <if test="freeDay != null">
+        free_day,
+      </if>
+      <if test="vehicleTypePackageId != null">
+        Vehicle_type_package_id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="indentNumber != null">
+        indent_number,
+      </if>
+      <if test="inNumber != null">
+        in_number,
+      </if>
+      <if test="outNumber != null">
+        out_number,
+      </if>
+      <if test="outFlag != null">
+        out_flag,
+      </if>
+      <if test="outDate != null">
+        out_date,
+      </if>
+      <if test="outPersonId != null">
+        out_person_id,
+      </if>
+      <if test="lockFlag != null">
+        lock_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="busId != null">
+        #{busId,jdbcType=INTEGER},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storeHouseId != null">
+        #{storeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="frameNumber != null">
+        #{frameNumber,jdbcType=NCHAR},
+      </if>
+      <if test="engineNumber != null">
+        #{engineNumber,jdbcType=NCHAR},
+      </if>
+      <if test="standard != null">
+        #{standard,jdbcType=NCHAR},
+      </if>
+      <if test="busYear != null">
+        #{busYear,jdbcType=NCHAR},
+      </if>
+      <if test="manufactureDate != null">
+        #{manufactureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDate != null">
+        #{tDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inDate != null">
+        #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inPersonId != null">
+        #{inPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="freeDay != null">
+        #{freeDay,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypePackageId != null">
+        #{vehicleTypePackageId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=NUMERIC},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="indentNumber != null">
+        #{indentNumber,jdbcType=NCHAR},
+      </if>
+      <if test="inNumber != null">
+        #{inNumber,jdbcType=NCHAR},
+      </if>
+      <if test="outNumber != null">
+        #{outNumber,jdbcType=NCHAR},
+      </if>
+      <if test="outFlag != null">
+        #{outFlag,jdbcType=BIT},
+      </if>
+      <if test="outDate != null">
+        #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outPersonId != null">
+        #{outPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="lockFlag != null">
+        #{lockFlag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xsdPro.model.StockBusDetailExample" resultType="java.lang.Integer">
+    select count(*) from tbl_stock_bus_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_stock_bus_detail
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.busId != null">
+        bus_id = #{record.busId,jdbcType=INTEGER},
+      </if>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeHouseId != null">
+        store_house_id = #{record.storeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.frameNumber != null">
+        Frame_number = #{record.frameNumber,jdbcType=NCHAR},
+      </if>
+      <if test="record.engineNumber != null">
+        Engine_number = #{record.engineNumber,jdbcType=NCHAR},
+      </if>
+      <if test="record.standard != null">
+        standard = #{record.standard,jdbcType=NCHAR},
+      </if>
+      <if test="record.busYear != null">
+        bus_year = #{record.busYear,jdbcType=NCHAR},
+      </if>
+      <if test="record.manufactureDate != null">
+        manufacture_date = #{record.manufactureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tDate != null">
+        T_date = #{record.tDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inDate != null">
+        in_date = #{record.inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inPersonId != null">
+        in_person_id = #{record.inPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeDay != null">
+        free_day = #{record.freeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleTypePackageId != null">
+        Vehicle_type_package_id = #{record.vehicleTypePackageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=NUMERIC},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=NUMERIC},
+      </if>
+      <if test="record.indentNumber != null">
+        indent_number = #{record.indentNumber,jdbcType=NCHAR},
+      </if>
+      <if test="record.inNumber != null">
+        in_number = #{record.inNumber,jdbcType=NCHAR},
+      </if>
+      <if test="record.outNumber != null">
+        out_number = #{record.outNumber,jdbcType=NCHAR},
+      </if>
+      <if test="record.outFlag != null">
+        out_flag = #{record.outFlag,jdbcType=BIT},
+      </if>
+      <if test="record.outDate != null">
+        out_date = #{record.outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outPersonId != null">
+        out_person_id = #{record.outPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lockFlag != null">
+        lock_flag = #{record.lockFlag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_stock_bus_detail
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      branch_id = #{record.branchId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      bus_id = #{record.busId,jdbcType=INTEGER},
+      id = #{record.id,jdbcType=INTEGER},
+      store_house_id = #{record.storeHouseId,jdbcType=INTEGER},
+      Frame_number = #{record.frameNumber,jdbcType=NCHAR},
+      Engine_number = #{record.engineNumber,jdbcType=NCHAR},
+      standard = #{record.standard,jdbcType=NCHAR},
+      bus_year = #{record.busYear,jdbcType=NCHAR},
+      manufacture_date = #{record.manufactureDate,jdbcType=TIMESTAMP},
+      T_date = #{record.tDate,jdbcType=TIMESTAMP},
+      in_date = #{record.inDate,jdbcType=TIMESTAMP},
+      in_person_id = #{record.inPersonId,jdbcType=INTEGER},
+      free_day = #{record.freeDay,jdbcType=INTEGER},
+      Vehicle_type_package_id = #{record.vehicleTypePackageId,jdbcType=INTEGER},
+      amount = #{record.amount,jdbcType=NUMERIC},
+      price = #{record.price,jdbcType=NUMERIC},
+      indent_number = #{record.indentNumber,jdbcType=NCHAR},
+      in_number = #{record.inNumber,jdbcType=NCHAR},
+      out_number = #{record.outNumber,jdbcType=NCHAR},
+      out_flag = #{record.outFlag,jdbcType=BIT},
+      out_date = #{record.outDate,jdbcType=TIMESTAMP},
+      out_person_id = #{record.outPersonId,jdbcType=INTEGER},
+      lock_flag = #{record.lockFlag,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.StockBusDetail">
+    update tbl_stock_bus_detail
+    <set>
+      <if test="storeHouseId != null">
+        store_house_id = #{storeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="frameNumber != null">
+        Frame_number = #{frameNumber,jdbcType=NCHAR},
+      </if>
+      <if test="engineNumber != null">
+        Engine_number = #{engineNumber,jdbcType=NCHAR},
+      </if>
+      <if test="standard != null">
+        standard = #{standard,jdbcType=NCHAR},
+      </if>
+      <if test="busYear != null">
+        bus_year = #{busYear,jdbcType=NCHAR},
+      </if>
+      <if test="manufactureDate != null">
+        manufacture_date = #{manufactureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDate != null">
+        T_date = #{tDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inDate != null">
+        in_date = #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inPersonId != null">
+        in_person_id = #{inPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="freeDay != null">
+        free_day = #{freeDay,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypePackageId != null">
+        Vehicle_type_package_id = #{vehicleTypePackageId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=NUMERIC},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="indentNumber != null">
+        indent_number = #{indentNumber,jdbcType=NCHAR},
+      </if>
+      <if test="inNumber != null">
+        in_number = #{inNumber,jdbcType=NCHAR},
+      </if>
+      <if test="outNumber != null">
+        out_number = #{outNumber,jdbcType=NCHAR},
+      </if>
+      <if test="outFlag != null">
+        out_flag = #{outFlag,jdbcType=BIT},
+      </if>
+      <if test="outDate != null">
+        out_date = #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outPersonId != null">
+        out_person_id = #{outPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="lockFlag != null">
+        lock_flag = #{lockFlag,jdbcType=BIT},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and bus_id = #{busId,jdbcType=INTEGER}
+      and id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.StockBusDetail">
+    update tbl_stock_bus_detail
+    set store_house_id = #{storeHouseId,jdbcType=INTEGER},
+      Frame_number = #{frameNumber,jdbcType=NCHAR},
+      Engine_number = #{engineNumber,jdbcType=NCHAR},
+      standard = #{standard,jdbcType=NCHAR},
+      bus_year = #{busYear,jdbcType=NCHAR},
+      manufacture_date = #{manufactureDate,jdbcType=TIMESTAMP},
+      T_date = #{tDate,jdbcType=TIMESTAMP},
+      in_date = #{inDate,jdbcType=TIMESTAMP},
+      in_person_id = #{inPersonId,jdbcType=INTEGER},
+      free_day = #{freeDay,jdbcType=INTEGER},
+      Vehicle_type_package_id = #{vehicleTypePackageId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=NUMERIC},
+      price = #{price,jdbcType=NUMERIC},
+      indent_number = #{indentNumber,jdbcType=NCHAR},
+      in_number = #{inNumber,jdbcType=NCHAR},
+      out_number = #{outNumber,jdbcType=NCHAR},
+      out_flag = #{outFlag,jdbcType=BIT},
+      out_date = #{outDate,jdbcType=TIMESTAMP},
+      out_person_id = #{outPersonId,jdbcType=INTEGER},
+      lock_flag = #{lockFlag,jdbcType=BIT}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and branch_id = #{branchId,jdbcType=INTEGER}
+      and store_id = #{storeId,jdbcType=INTEGER}
+      and bus_id = #{busId,jdbcType=INTEGER}
+      and id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

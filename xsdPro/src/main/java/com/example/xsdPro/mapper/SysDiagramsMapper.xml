@@ -1333,6 +1333,8 @@
       version = #{version,jdbcType=INTEGER}
     where diagram_id = #{diagramId,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
   <resultMap id="BaseResultMap" type="com.example.xsdPro.model.SysDiagrams">
     <constructor>
       <idArg column="diagram_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -3442,4 +3444,5 @@
       version = #{version,jdbcType=INTEGER}
     where diagram_id = #{diagramId,jdbcType=INTEGER}
   </update>
+>>>>>>> liyi
 </mapper>

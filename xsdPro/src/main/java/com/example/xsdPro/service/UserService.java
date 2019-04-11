@@ -2,7 +2,7 @@ package com.example.xsdPro.service;
 
 import com.example.xsdPro.model.User;
 import com.example.xsdPro.model.UserKey;
-import com.example.xsdPro.model.vo.UserVo;
+import com.example.xsdPro.model.Vo.UserVo;
 
 
 public interface UserService {

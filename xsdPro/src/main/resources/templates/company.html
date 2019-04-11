@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>门店及部门管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/all.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jtree.js"></script>
+    <script type="text/javascript" src="/js/uitool.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <style>
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 28%;
+            width: 40%;
+            height: 80%;
+            border: 16px solid lightblue;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        //弹出隐藏层
+        function ShowDiv(show_div,bg_div){
+            document.getElementById(show_div).style.display='block';
+            document.getElementById(bg_div).style.display='block' ;
+            var bgdiv = document.getElementById(bg_div);
+            bgdiv.style.width = document.body.scrollWidth;
+            // bgdiv.style.height = $(document).height();
+            $("#"+bg_div).height($(document).height());
+        };
+        //关闭弹出层
+        function CloseDiv(show_div,bg_div)
+        {
+            document.getElementById(show_div).style.display='none';
+            document.getElementById(bg_div).style.display='none';
+        };
+    </script>
+</head>
+<body>
+<!--弹出层时背景层DIV-->
+<div id="fade" class="black_overlay">
+</div>
+<div id="MyDiv" class="white_content">
+    <div style="text-align: right; cursor: default; height: 40px;">
+        <span style="font-size: 16px;" onclick="CloseDiv('MyDiv','fade')">关闭</span>
+    </div>
+    <div class="accordion" fillSpace="sidebar" style="width: 320px;position:relative;top:0px; left:160px;float: left">
+        <div class="accordionContent" style="width: 320px;">
+            <ul  class="tree treeFolder collapse">
+                <li><a autobypy="bz" dataType="topmenu" childMneu="bzmenus" keyboard="A" th:text="${companyVO.companyName}"></a>
+                    <ul  class="bzmenus_sub" th:each="branch:${companyVO.branchVOList}">
+                        <li><a autobypy="tyhs" th:text="${branch.branchName}"></a>
+                            <ul th:each="bran:${branch.list}">
+                                <li class="child_node"><a autobypy="cjbg" href="#" th:text="${bran.branchName}"></a>
+                                    <ul id="room" th:each="person:${branch.personList}">
+                                        <li class="get_child_node"><a class="person_id" autobypy="cjbg" href="#" th:value="${person.personId}" th:text="${person.personName}" th:onclick="'javascript:getPerson(\''+${person.personId}+'\',\''+${person.personName}+'\')'"></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="float: left;position:relative;top:340px;right: 75px;">
+        <input  type="button" value="选择" onclick="CloseDiv('MyDiv','fade')"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input  type="button" value="取消" onclick="CloseDiv('MyDiv','fade')"/>
+    </div>
+</div>
+
+<div class="accordion" fillSpace="sidebar" style="width: 320px;position:relative;top:125px; left:200px;float: left">
+    <div class="accordionContent" style="width: 320px;">
+        <ul id="a" class="tree treeFolder collapse">
+            <li><a autobypy="bz" dataType="topmenu" childMneu="bzmenus" keyboard="A" th:text="${companyVO.companyName}"></a>
+                <ul id="bzmenus" class="bzmenus_sub" th:each="branch:${companyVO.branchVOList}">
+                    <li><a autobypy="tyhs" th:text="${branch.branchName}" th:onclick="'javascript:getbranchinfo(\''+${branch.branchId}+'\')'"></a>
+                        <ul th:each="bran:${branch.list}">
+                           <li class="childnode"><a autobypy="cjbg" href="#" th:text="${bran.branchName}" th:onclick="'javascript:getbranchinfo(\''+${bran.branchId}+'\')'"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div style=" float: right; padding-top: 115px;padding-right: 35%">
+    <form method="post" id="FormID">
+        <table id="table" style="width: 415px;height: 330px" >
+            <tr>
+                <td> <input class="branch_id" type="text" name="branch_name"/></td>
+            </tr>
+            <tr style="height: 35px">
+                <td>上级部门</td>
+                <td align="center"> <select name="Supser_branch_id" class="supser_branch_id" style="height: 23px;width: 170px" >
+                      <option value="0" th:text="${companyVO.companyName}"></option>
+                      <option th:each="branch:${companyVO.branchVOList}" th:value="${branch.branchId}" th:text="${branch.branchName}"></option>
+                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td>部门代码</td>
+                <td align="center"><input class="branch_code" type="text" name="branch_code" style="height: 22px;border:0.5px solid #378888"/></td>
+            </tr>
+            <tr>
+                <td>部门名称</td>
+                <td align="center"><input class="branch_name" type="text" name="branch_name" style="height: 22px;border:0.5px solid #378888"/></td>
+            </tr>
+            <tr>
+                <td>部门属性</td>
+                <td align="center"><input type="radio" class="branch_property_one" name="branch_property" value="1" checked="checked"/>部门&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="branch_property_tow" name="branch_property" value="2" />门店</td>
+                <td id="test">经营品牌 &nbsp;<select class="brand_Id" name="" style="height: 23px;width: 65px">
+                    <option  th:each="brand:${brandList}"  th:value="${brand.brandId}" th:text="${brand.brandName}"></option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>负责人</td>
+                <td align="center">
+                    <input class="head_person_id_hide" type="text" name="head_person_id" style="height: 22px;border:0.5px solid #378888"/>
+                    <input class="head_person_id" type="text" name="head_person_name" disabled="disabled" style="height: 22px;border:0.5px solid #378888"/>
+                </td>
+                <td align="center" style="width: 150px"><input type="button" onclick=" ShowDiv('MyDiv','fade');" value="选择" style="border:0.5px;width: 55px;height: 22px"/></td>
+            </tr>
+            <tr>
+                <td>说明</td>
+                <td align="center"><textarea class="remark" name="remark" style="width: 168px;resize:none;OVERFLOW:hidden" cols="2" rows="6"></textarea></td>
+            </tr>
+            <div style="float: left; position:relative;top:401px; left:180px;">
+                 <input type="button" class="insert" value="新增" onclick="empty();"/>&nbsp;
+                 <input type="button" class="preservation" value="保存" onclick="insertBranch();"/>
+            </div>
+            <div class="operation_tow" style="float: left; position:relative;top:401px; left:280px;">
+                <input type="button" class="update" value="修改" onclick="updateBranch();"/>&nbsp;
+                <input type="button" class="delete" value="删除" onclick="deleteBranch();"/>
+            </div>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    $("#test").hide();    // 先隐藏所有文本框
+    $(".branch_id").hide();
+    $(".operation_tow").hide();
+    $(".head_person_id_hide").hide();
+    $("#bzmenus li a").click(function() {
+        $(".operation_tow").show();
+    });
+    $(":radio").click(function() {
+        var num = $(this).val();  // 当前按钮的value值对应需要显示文本框的位置
+        var supid=$(".supser_branch_id").val();
+        if(supid==0){
+            if(num==1){
+                $("#test").hide();    // 先隐藏所有文本框
+            }else{
+                $("#test").show(); // 然后显示对应的文本框
+            }
+        }else{
+            if(num==1){
+                $("#test").hide();    // 先隐藏所有文本框
+            }else{
+                $("#test").hide();    // 先隐藏所有文本框
+            }
+        }
+
+    });
+
+    function empty(){
+        $(".branch_property_one").prop('checked', 'true');
+        $(".branch_property_tow").removeProp('checked');
+        $("#test").hide();    // 先隐藏所有文本框
+        $(".supser_branch_id").attr("disabled",false);
+        $(".preservation").show();
+        $(".operation_tow").hide();
+        $(".branch_code").val(" ");
+        $(".branch_name").val(" ");
+        $(".remark").val(" ");
+        $(".head_person_id_hide").val(" ");
+        $(".head_person_id").val(" ");
+    }
+
+    function isnull(){
+        if($(".branch_code").val()==""){
+            alert("部门代码不能为空");
+            return false;
+        }
+        if($(".branch_name").val()==""){
+            alert("部门名称不能为空");
+            return false;
+        }
+        if($(".remark").val()==""){
+            alert("说明不能为空");
+            return false;
+        }
+        if($(".head_person_id").val()==""){
+            alert("负责人不能为空");
+            return false;
+        }
+
+    }
+
+    function updateBranch(){
+        if(isnull()!=false){
+            var supser_branch_id=$(".supser_branch_id").val();
+            var branch_code=$(".branch_code").val();
+            var branch_name=$(".branch_name").val();
+            var branch_property=$('input[name="branch_property"]:checked').val();
+            var head_person_id=$(".head_person_id_hide").val();
+            var remark=$(".remark").val();
+            var branch_Id=$(".branch_id").val();
+            var brand_Id=$(".brand_Id").val();
+            $.ajax({
+                url: 'http://localhost:8080/branch/updateBranchInfo',
+                type: 'post',
+                cache: false,
+                dataType: 'json',
+                data: {supserBranchId: supser_branch_id,branchCode:branch_code,branchName:branch_name,brandId:brand_Id,
+                    branchProperty:branch_property,headPersonId:head_person_id,remark:remark,branchId:branch_Id},
+                success: function (result) {
+                    var res=result.Result;
+                    alert(res);
+                    window.location.href="http://localhost:8080/company/info";
+                }
+            });
+        }
+    }
+
+    function insertBranch(){
+        if(isnull()!=false){
+            var supser_branch_id=$(".supser_branch_id").val();
+            var branch_code=$(".branch_code").val();
+            var branch_name=$(".branch_name").val();
+            var branch_property=$('input[name="branch_property"]:checked').val();
+            var head_person_id=$(".head_person_id_hide").val();
+            var remark=$(".remark").val();
+            var branch_Id=$(".branch_id").val();
+            var brand_Id=$(".brand_Id").val();
+            $.ajax({
+                url: 'http://localhost:8080/branch/insertBranch',
+                type: 'post',
+                cache: false,
+                dataType: 'json',
+                data: {supserBranchId: supser_branch_id,branchCode:branch_code,branchName:branch_name,brandId:brand_Id,
+                    branchProperty:branch_property,headPersonId:head_person_id,remark:remark,branchId:branch_Id},
+                success: function (result) {
+                    var res=result.Result;
+                    alert(res);
+                }
+            });
+        }
+    }
+    function deleteBranch(){
+        var branch_Id=$(".branch_id").val();
+        var supser_branch_id=$(".supser_branch_id").val();
+        $.ajax({
+            url: 'http://localhost:8080/branch/delectBranchInfo',
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            data: {branchId: branch_Id,supserBranchId:supser_branch_id},
+            success: function (result) {
+                var res=result.Result;
+                alert(res);
+            }
+        });
+    }
+    function getbranchinfo(id) {
+        $(".preservation").hide();
+        var branch_Id=id;
+        $.ajax({
+            url: 'http://localhost:8080/branch/getBranchInfo',
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            data: {branchId: branch_Id},
+            success: function (result) {
+                $(".branch_code").val(result.branch.branchCode);
+                $(".branch_name").val(result.branch.branchName);
+                $(".remark").val(result.branch.remark);
+                $(".branch_property").val(result.branch.branchProperty);
+                $(".branch_id").val(result.branch.branchId);
+
+                var supserbranchid=result.branch.supserBranchId;
+                if(supserbranchid==null){
+                    $(".supser_branch_id").val(0);
+                    $(":radio").click(function() {
+                        var num = $(this).val();  // 当前按钮的value值对应需要显示文本框的位置
+                        if(num==1){
+                            $("#test").hide();    // 先隐藏所有文本框
+                        }else{
+                            $("#test").show();    // 先隐藏所有文本框
+                        }
+                    });
+                }else{
+                    $(":radio").click(function() {
+                        var num = $(this).val();  // 当前按钮的value值对应需要显示文本框的位置
+                        if(num==1){
+                            $("#test").hide();    // 先隐藏所有文本框
+                        }else{
+                            $("#test").hide();    // 先隐藏所有文本框
+                        }
+                    });
+                    $(".supser_branch_id").val(result.branch.supserBranchId);
+                }
+
+                var branchProperty=result.branch.branchProperty;
+
+                if (branchProperty == 1) {
+                    $(".branch_property_one").prop('checked', 'true');
+                    $(".branch_property_tow").removeProp('checked');
+                    $("#test").hide();    // 先隐藏所有文本框
+                }
+                if(branchProperty==2){
+                    $(".branch_property_tow").prop('checked','true');
+                    $(".branch_property_one").removeProp('checked');
+                    $(".brand_Id").val(result.branch.brandId);
+                    $("#test").show(); // 然后显示对应的文本框
+                }
+                $(".supser_branch_id").attr("disabled","disabled");
+                $(".head_person_id").val(result.person.personName);
+            }
+        });
+    }
+    function getPerson(value,name){
+        $(".head_person_id").val(name);
+        $(".head_person_id_hide").val(name);
+    }
+
+</script>
+</body>
+</html>

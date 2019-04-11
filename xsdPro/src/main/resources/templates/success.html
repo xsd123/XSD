@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-       <meta charset="UTF-8">
+       <meta charset="UTF-8"/>
        <title>首页实例</title>
 </head>
 <body>
@@ -20,6 +20,6 @@
     You are a 2
 </p>
 <a shiro:hasRole="admin" href="abc.html">Administer the system</a><!-- 拥有该角色 -->
-
+<a th:value="跳转到部门及门店管理" href="http://localhost:8080/company/info">跳转到部门及门店管理</a>
 </body>
 </html>

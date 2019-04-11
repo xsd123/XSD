@@ -1,20 +1,18 @@
 package com.example.xsdPro.dao;
 
 import com.example.xsdPro.model.Person;
-import com.example.xsdPro.model.PersonKey;
+
+import org.apache.ibatis.annotations.Param;
+
+
+
+import java.util.List;
 
 public interface PersonMapper {
-    int deleteByPrimaryKey(PersonKey key);
+    List<Person> selectByCompanyId(@Param("companyId") Integer companyId,@Param("branchId") Integer branchId);
 
-    int insert(Person record);
-
-    int insertSelective(Person record);
-
-    Person selectByPrimaryKey(PersonKey key);
-
-    int updateByPrimaryKeySelective(Person record);
-
-    int updateByPrimaryKey(Person record);
+    Person selectByPrimaryKey(@Param("companyId") Integer companyId,@Param("branchId") Integer branchId,@Param("personId") Integer personId);
 
     Person findALLByPersonId(int personId);
+
 }

@@ -42,7 +42,7 @@
     from tbl_user
     where  user_code = #{userCode,jdbcType=NCHAR}
   </select>
-  <select id="selectAllByUserCode" parameterType="java.lang.String" resultType="com.example.xsdPro.model.vo.UserVo">
+  <select id="selectAllByUserCode" parameterType="java.lang.String" resultType="com.example.xsdPro.model.Vo.UserVo">
     select
     <include refid="Base_Column_List" />
     from tbl_user

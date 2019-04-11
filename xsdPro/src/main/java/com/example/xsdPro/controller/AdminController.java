@@ -71,15 +71,14 @@ public class AdminController {
                 if (user.getUserPass().equals(userPass)) {
                     try {
                         logger.info("用户[" + userCode + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-                        System.out.println("用户[" + userCode + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                         redisService.set("user", user);
                         List<RolePersonVo> rolePersons = rolePersonServiceImpl.findRolePersonByUserCode(userCode);
-                        redisService.set("rolePersons", rolePersons);
+                       // redisService.lPush("rolePersons", rolePersons);
                         redisService.set("person", personServiceImpl.findALLByPersonId(user.getPersonId()));
                         for (RolePersonVo rp : rolePersons) {
                             rp.setRoleRight(roleRightServiceImpl.findAllByRoleId(rp.getRoleId()));
                         }
-                        redisService.set("rolePersons", rolePersons);
+                        redisService.lPush("rolePersons", rolePersons);
                         mav.setViewName("success");
                         return mav;
                     } catch (Exception e) {

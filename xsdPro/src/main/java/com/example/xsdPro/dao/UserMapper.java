@@ -2,7 +2,7 @@ package com.example.xsdPro.dao;
 
 import com.example.xsdPro.model.User;
 import com.example.xsdPro.model.UserKey;
-import com.example.xsdPro.model.vo.UserVo;
+import com.example.xsdPro.model.Vo.UserVo;
 
 public interface UserMapper {
     /*int deleteByPrimaryKey(UserKey key);
