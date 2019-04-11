@@ -15,8 +15,8 @@ public class Role extends RoleKey {
 
     private String remark;
 
-    public Role(Integer companyId, Integer roleId, String roleCode, String roleName, Integer statue, String insPersonName, Date insDate, String remark) {
-        super(companyId, roleId);
+    public Role(Integer roleId, Integer companyId, String roleCode, String roleName, Integer statue, String insPersonName, Date insDate, String remark) {
+        super(roleId, companyId);
         this.roleCode = roleCode;
         this.roleName = roleName;
         this.statue = statue;

@@ -1,0 +1,3917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xsdPro.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="findAllByRoleId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Role">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <!--<select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, Company_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (role_id, Company_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and Company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, role_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (Company_id, role_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, role_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (Company_id, role_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, role_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (Company_id, role_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, role_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (Company_id, role_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Role">
+    <constructor>
+      <idArg column="Company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ins_person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="ins_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Company_id, role_id, role_code, role_name, statue, ins_person_name, ins_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.RoleKey">
+    delete from tbl_role
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role (Company_id, role_id, role_code, 
+      role_name, statue, ins_person_name, 
+      ins_date, remark)
+    values (#{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=NCHAR}, 
+      #{roleName,jdbcType=NCHAR}, #{statue,jdbcType=INTEGER}, #{insPersonName,jdbcType=NCHAR}, 
+      #{insDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.Role">
+    insert into tbl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        Company_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name,
+      </if>
+      <if test="insDate != null">
+        ins_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=NCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=NCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="insPersonName != null">
+        ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      </if>
+      <if test="insDate != null">
+        ins_date = #{insDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.Role">
+    update tbl_role
+    set role_code = #{roleCode,jdbcType=NCHAR},
+      role_name = #{roleName,jdbcType=NCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      ins_person_name = #{insPersonName,jdbcType=NCHAR},
+      ins_date = #{insDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=NCHAR}
+    where Company_id = #{companyId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </update>-->
+</mapper>

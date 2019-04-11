@@ -184,6 +184,10 @@
     });
 
     function empty(){
+        $(".branch_property_one").prop('checked', 'true');
+        $(".branch_property_tow").removeProp('checked');
+        $("#test").hide();    // 先隐藏所有文本框
+        $(".supser_branch_id").attr("disabled",false);
         $(".preservation").show();
         $(".operation_tow").hide();
         $(".branch_code").val(" ");
@@ -210,6 +214,7 @@
             alert("负责人不能为空");
             return false;
         }
+
     }
 
     function updateBranch(){
@@ -329,6 +334,7 @@
                     $(".brand_Id").val(result.branch.brandId);
                     $("#test").show(); // 然后显示对应的文本框
                 }
+                $(".supser_branch_id").attr("disabled","disabled");
                 $(".head_person_id").val(result.person.personName);
             }
         });

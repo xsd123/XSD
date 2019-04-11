@@ -38,10 +38,16 @@
     update_man, update_date, administrator_name, administrator_pass, Auditor, Auditor_date,
     Close_man, Close_date
   </sql>
- <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Company">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Company">
     select
     <include refid="Base_Column_List" />
     from tbl_company
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectCompanyCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+      id
+    from tbl_company
+    where company_code = #{companyCode,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.xsdPro.dao.PersonMapper">
-
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.Person">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="person_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="person_name" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="SEX" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <arg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="charge_flag" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Birth_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CARD" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="TEL" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="E_mail" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="school" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="major" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Education_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="graduation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Address" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Address1" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Native_place1" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Native_place2" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Native_place3" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="statue" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="in_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="in_Transactor" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_Transactor" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="out_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="out_Transactor" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="out_serson" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="post_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
   <sql id="Base_Column_List">
     company_id, person_id, person_code, person_name, SEX, branch_id, charge_flag, Birth_date, 
     CARD, TEL, E_mail, school, major, Education_id, graduation_date, Address, Address1, 
     Native_place1, Native_place2, Native_place3, statue, in_date, in_Transactor, update_date, 
     update_Transactor, out_date, out_Transactor, out_serson, post_id, remark
   </sql>
-
   <select id="selectByCompanyId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Person">
     select
     <include refid="Base_Column_List" />
@@ -23,5 +55,12 @@
     where company_id=#{companyId,jdbcType=INTEGER}
     and branch_id=#{branchId,jdbcType=INTEGER}
     and person_id=#{personId,jdbcType=INTEGER}
+  </select>
+
+  <select id="findALLByPersonId" parameterType="java.lang.Integer" resultType="com.example.xsdPro.model.Person">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_person
+    where person_id = #{personId,jdbcType=INTEGER}
   </select>
 </mapper>

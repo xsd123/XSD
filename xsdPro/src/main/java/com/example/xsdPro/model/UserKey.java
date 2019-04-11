@@ -1,8 +1,12 @@
 package com.example.xsdPro.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 public class UserKey {
     private Integer companyId;
 
+    @NotEmpty(message="用户名不能为空！")
     private String userCode;
 
     public UserKey(Integer companyId, String userCode) {

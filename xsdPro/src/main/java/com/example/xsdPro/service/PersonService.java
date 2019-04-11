@@ -9,4 +9,6 @@ public interface PersonService {
     List<Person> selectByCompanyId(Integer companyId,Integer branchId);
 
     Person selectByPrimaryKey(Integer companyId,Integer branchId,Integer personId);
+
+    Person findALLByPersonId(int personId);
 }

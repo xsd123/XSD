@@ -11,82 +11,10 @@
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
     remark
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -152,50 +80,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultType="java.lang.Integer">
-    select count(*) from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_vehicle_system
-    <set>
-      <if test="record.companyId != null">
-        company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemId != null">
-        Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemCode != null">
-        Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.vehicleSystemName != null">
-        Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_vehicle_system
-    set company_id = #{record.companyId,jdbcType=INTEGER},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
     <set>
@@ -232,82 +116,10 @@
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
     remark
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -373,50 +185,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultType="java.lang.Integer">
-    select count(*) from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_vehicle_system
-    <set>
-      <if test="record.companyId != null">
-        company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemId != null">
-        Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemCode != null">
-        Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.vehicleSystemName != null">
-        Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_vehicle_system
-    set company_id = #{record.companyId,jdbcType=INTEGER},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
     <set>
@@ -453,82 +221,10 @@
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
     remark
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -594,50 +290,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultType="java.lang.Integer">
-    select count(*) from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_vehicle_system
-    <set>
-      <if test="record.companyId != null">
-        company_id = #{record.companyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemId != null">
-        Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemCode != null">
-        Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.vehicleSystemName != null">
-        Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_vehicle_system
-    set company_id = #{record.companyId,jdbcType=INTEGER},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
     <set>
@@ -674,82 +326,10 @@
       <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
     remark
   </sql>
-  <select id="selectByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -815,50 +395,2841 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.xsdPro.model.VehicleSystemExample" resultType="java.lang.Integer">
-    select count(*) from tbl_vehicle_system
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
     <set>
-      <if test="record.companyId != null">
-        company_id = #{record.companyId,jdbcType=INTEGER},
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
       </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
       </if>
-      <if test="record.vehicleSystemId != null">
-        Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      </if>
-      <if test="record.vehicleSystemCode != null">
-        Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      </if>
-      <if test="record.vehicleSystemName != null">
-        Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=NCHAR},
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
-    set company_id = #{record.companyId,jdbcType=INTEGER},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      Vehicle_system_id = #{record.vehicleSystemId,jdbcType=INTEGER},
-      Vehicle_system_code = #{record.vehicleSystemCode,jdbcType=NCHAR},
-      Vehicle_system_NAME = #{record.vehicleSystemName,jdbcType=NCHAR},
-      remark = #{record.remark,jdbcType=NCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    <set>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystem">
+    update tbl_vehicle_system
+    set Vehicle_system_code = #{vehicleSystemCode,jdbcType=NCHAR},
+      Vehicle_system_NAME = #{vehicleSystemName,jdbcType=NCHAR},
+      remark = #{remark,jdbcType=NCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.xsdPro.model.VehicleSystem">
+    <constructor>
+      <idArg column="company_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="Vehicle_system_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Vehicle_system_code" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="Vehicle_system_NAME" javaType="java.lang.String" jdbcType="NCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="NCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, brand_id, Vehicle_system_id, Vehicle_system_code, Vehicle_system_NAME, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.xsdPro.model.VehicleSystemKey">
+    delete from tbl_vehicle_system
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and brand_id = #{brandId,jdbcType=INTEGER}
+      and Vehicle_system_id = #{vehicleSystemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system (company_id, brand_id, Vehicle_system_id, 
+      Vehicle_system_code, Vehicle_system_NAME, remark
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{vehicleSystemId,jdbcType=INTEGER}, 
+      #{vehicleSystemCode,jdbcType=NCHAR}, #{vehicleSystemName,jdbcType=NCHAR}, #{remark,jdbcType=NCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xsdPro.model.VehicleSystem">
+    insert into tbl_vehicle_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="vehicleSystemId != null">
+        Vehicle_system_id,
+      </if>
+      <if test="vehicleSystemCode != null">
+        Vehicle_system_code,
+      </if>
+      <if test="vehicleSystemName != null">
+        Vehicle_system_NAME,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemId != null">
+        #{vehicleSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleSystemCode != null">
+        #{vehicleSystemCode,jdbcType=NCHAR},
+      </if>
+      <if test="vehicleSystemName != null">
+        #{vehicleSystemName,jdbcType=NCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.xsdPro.model.VehicleSystem">
     update tbl_vehicle_system
     <set>

@@ -1,13 +1,10 @@
 package com.example.xsdPro.controller;
 
-import com.example.xsdPro.config.RedisConfig;
-import com.example.xsdPro.model.Branch;
-import com.example.xsdPro.model.Brand;
-import com.example.xsdPro.model.Company;
-import com.example.xsdPro.model.Person;
+import com.example.xsdPro.model.*;
 import com.example.xsdPro.model.Vo.BranchVo;
 import com.example.xsdPro.model.Vo.CompanyVo;
 import com.example.xsdPro.service.*;
+import com.example.xsdPro.utils.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +19,10 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    private ICompanyService iCompanyService;
+    private CompanyService iCompanyService;
 
     @Autowired
-    private IBranchService iBranchService;
+    private BranchService iBranchService;
 
     @Autowired
     private BrandService brandService;
@@ -51,25 +48,25 @@ public class CompanyController {
     public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
     }
-    public IBranchService getiBranchService() {
+    public BranchService getiBranchService() {
         return iBranchService;
     }
-    public void setiBranchService(IBranchService iBranchService) {
+    public void setiBranchService(BranchService iBranchService) {
         this.iBranchService = iBranchService;
     }
-    public ICompanyService getiCompanyService() {
+    public CompanyService getiCompanyService() {
         return iCompanyService;
     }
-    public void setiCompanyService(ICompanyService iCompanyService) {
+
+    public void setiCompanyService(CompanyService iCompanyService) {
         this.iCompanyService = iCompanyService;
     }
 
     @GetMapping("/info")
     public String selectByPrimaryKey(HttpServletRequest request){
-        RedisConfig redisConfig=new RedisConfig();
-
+        User user= (User) redisService.get("user");
         //根据id查询父级菜单
-        Company com=iCompanyService.selectByPrimaryKey(1);
+        Company com=iCompanyService.selectByPrimaryKey(user.getCompanyId());
         //查询对应的子级菜单
         List<Branch> branchList=iBranchService.selectByCompanyId(com.getId());//2级节点
         //2级节点list 每个list包含了所有他的下级的菜单
@@ -77,12 +74,12 @@ public class CompanyController {
         for (Branch branch :branchList){
             BranchVo vo=branchToVO(branch);
             //根据二级节点加公司编号查询下级菜单
-            List<Branch> branchChildnodeList=iBranchService.selectBySupserBranchId(1,branch.getBranchId());//3级节点
+            List<Branch> branchChildnodeList=iBranchService.selectBySupserBranchId(user.getCompanyId(),branch.getBranchId());//3级节点
             List<BranchVo> branchVOChildnodeList=new ArrayList<>();
             List<Person> personList=new ArrayList<>();
             for (Branch branch1 :branchChildnodeList){
                 branchVOChildnodeList.add(branchToVO(branch1));
-                List<Person> personlist=personService.selectByCompanyId(1,branch1.getBranchId());//4级节点
+                List<Person> personlist=personService.selectByCompanyId(user.getCompanyId(),branch1.getBranchId());//4级节点
                 for (Person person:personlist){
                     personList.add(person);
                 }
