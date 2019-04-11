@@ -1,0 +1,12 @@
+com\example\xsdPro\controller\AdminController.class
+com\example\xsdPro\service\impl\RoleRightServiceImpl.class
+com\example\xsdPro\config\shiro\ShiroConfiguration.class
+com\example\xsdPro\service\RolePersonService.class
+com\example\xsdPro\config\shiro\ShiroRealm.class
+com\example\xsdPro\service\impl\RoleServiceImpl.class
+com\example\xsdPro\service\RoleService.class
+com\example\xsdPro\service\impl\ModuleServiceImpl.class
+com\example\xsdPro\service\ModuleService.class
+com\example\xsdPro\service\RoleRightService.class
+com\example\xsdPro\service\impl\RolePersonServiceImpl.class
+com\example\xsdPro\model\vo\UserVo.class
